@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   GAME                                                                  11/02/2013 10:05:14 PAGE 1   
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 18:31:43 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE GAME
@@ -11,64 +11,193 @@ line level    source
    2          #include "game.h"
    3          #include "lcd12864.h"
    4          
-   5          //location of the most left point of bar
-   6          unsigned char bar_sit_x=23;
-   7          unsigned char bar_sit_y=63;
-   8          //bar speed
-   9          unsigned char bar_speed=3;
-  10          //bar length
-  11          unsigned char bar_len=16;
-  12          //bar direction
-  13          bit bar_direction=0;//0:left, 1:right
-  14          
-  15          void game_init(){
-  16   1              lcd_init();
-  17   1              first_page();
-  18   1      }
-  19          
-  20          void clear_bar(){
-  21   1              unsigned char i;
-  22   1              for(i=0;i<bar_len;i++){
-  23   2                      clear_dot(bar_sit_x+i,bar_sit_y);
-  24   2              }
-  25   1      }
-  26          
-  27          void draw_bar(){
-  28   1              unsigned char i;
-  29   1              for(i=0;i<bar_len;i++){
-  30   2                      set_dot(bar_sit_x+i,bar_sit_y);
-  31   2              }
-  32   1      }
-  33          
-  34          void move_bar(){
-  35   1              if(bar_direction){
-  36   2                      if(bar_sit_x<=113-bar_speed){
-  37   3                              bar_sit_x+=bar_speed;
-  38   3                      }
-  39   2              }else{
-  40   2                      if(bar_sit_x>=0+bar_speed){
-  41   3                              bar_sit_x-=bar_speed;
-  42   3                      }
-  43   2              }
-  44   1      }
-  45          
-  46          void refresh_screen(){
-  47   1              clear_bar();
-  48   1              move_bar();
-  49   1              draw_bar();
-  50   1      }
+   5          //variables of game
+   6          unsigned char game_status=1;//2: win  1: continue. 0: end
+   7          
+   8          //variables of block
+   9          unsigned char code block[]={
+  10          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  11          0xFF,0xF7,0xEF,0xEF,0xDF,0xDF,0xBF,0x7F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  12          0xFF,0xFF,0xFF,0x7F,0x9F,0xE7,0xFB,0xFD,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  13          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  14          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x01,0xFD,0xFD,
+  15          0x0D,0xED,0xED,0xED,0xED,0xED,0x6D,0x6D,0x2C,0x2D,0xED,0xED,0xED,0xED,0xED,0xED,
+  16          0xED,0xED,0x2D,0x2C,0x6D,0x6D,0x6D,0xED,0xED,0xED,0xED,0xED,0x0D,0xFD,0xFD,0x01,
+  17          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  18          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x00,0xFF,0xFF,
+  19          0x80,0xBF,0xBF,0xBF,0xBC,0xBC,0xBE,0xBE,0xB3,0xAD,0xAF,0xB7,0xBB,0xB9,0xB7,0xAF,
+  20          0xAF,0xB5,0xBB,0xBF,0xBE,0xBE,0xBE,0xBF,0xBF,0xBF,0xBF,0xBF,0x80,0xFF,0xFF,0x00,
+  21          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+  22          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFC,0xFD,0xFD,
+  23          0xFD,0xFD,0xCD,0xC1,0xF1,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,
+  24          0xFD,0xFD,0xFD,0xFD,0xF1,0xC1,0xCD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFC,
+  25          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF
+  26          };
+  27          
+  28          //functions of block
+  29          //draw block at the begining
+  30          void draw_block(){
+  31   1              unsigned char x,y;
+  32   1              choose_screen(0);
+  33   1              for(x=0;x<4;x++){
+  34   2                      for(y=0;y<64;y++){
+  35   3                              lcd_write_command(0xb8|x);
+  36   3                              lcd_write_command(0x40|y);
+  37   3                              lcd_write_data(block[x*64+y]);
+  38   3                      }       
+  39   2              }
+  40   1      }
+  41          //check block
+  42          void check_block(){
+  43   1              unsigned char i,x,y,rdata;
+  44   1              unsigned char now_game_status=game_status;
+  45   1              game_status=2;
+  46   1              for(i=1;i<3;i++){
+  47   2                      choose_screen(i);
+  48   2                      for(x=0;x<4;x++){
+  49   3                              for(y=0;y<64;y++){
+  50   4                                      lcd_write_command(0xb8|x);
+  51   4                                      lcd_write_command(0x40|y);
+  52   4                                      rdata=lcd_read_data();
+  53   4                                      if(rdata!=0x00){
+  54   5                                              game_status=now_game_status;
+  55   5                                              break;
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 18:31:43 PAGE 2   
+
+  56   5                                      }
+  57   4                              }
+  58   3                              if(game_status==now_game_status){
+  59   4                                      break;
+  60   4                              }
+  61   3                      }
+  62   2                      if(game_status==now_game_status){
+  63   3                              break;
+  64   3                      }
+  65   2              }
+  66   1      }
+  67          
+  68          //initial fiunction
+  69          //init the game
+  70          void game_init(){
+  71   1              lcd_init();
+  72   1              first_page();
+  73   1              draw_block();
+  74   1      }
+  75          
+  76          //variables of bar
+  77          //location of the most left point of bar
+  78          unsigned char bar_sit[]={0,63};//(x,y)
+  79          //bar speed
+  80          unsigned char bar_speed=3;
+  81          //bar length
+  82          unsigned char bar_len=16;
+  83          //bar direction
+  84          bit bar_direction=1;//0:left, 1:right
+  85          
+  86          //functions for bar
+  87          //clear preview bar
+  88          void clear_bar(){
+  89   1              unsigned char i;
+  90   1              for(i=0;i<bar_len;i++){
+  91   2                      clear_dot(bar_sit[0]+i,bar_sit[1]);
+  92   2              }
+  93   1      }
+  94          //calculate now bar
+  95          void move_bar(){
+  96   1              if(bar_direction){
+  97   2                      if(bar_sit[0]<=113-bar_speed){
+  98   3                              bar_sit[0]+=bar_speed;
+  99   3                      }
+ 100   2              }else{
+ 101   2                      if(bar_sit[0]>=0+bar_speed){
+ 102   3                              bar_sit[0]-=bar_speed;
+ 103   3                      }
+ 104   2              }
+ 105   1      }
+ 106          //draw bar
+ 107          void draw_bar(){
+ 108   1              unsigned char i;
+ 109   1              //first, clear previous bar
+ 110   1              clear_bar();
+ 111   1              //calculate now bar
+ 112   1              move_bar();
+ 113   1              //draw now bar
+ 114   1              for(i=0;i<bar_len;i++){
+ 115   2                      set_dot(bar_sit[0]+i,bar_sit[1]);
+ 116   2              }
+ 117   1      }
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 18:31:43 PAGE 3   
+
+ 118          
+ 119          //variables of ball
+ 120          //location of ball
+ 121          unsigned char ball_sit[]={7,62};//(x,y)
+ 122          //ball speed
+ 123          unsigned char ball_speed[]={0,3};//(x,y)
+ 124          //bar direction
+ 125          bit ball_direction_x=0;//x: 0->left, 1->right.  
+ 126          bit ball_direction_y=0;//y: 0->down, 1->up.
+ 127          
+ 128          //functions for ball
+ 129          //clear preview ball
+ 130          void clear_ball(){
+ 131   1              clear_dot(ball_sit[0],ball_sit[1]);
+ 132   1      }
+ 133          //calculate now ball
+ 134          void move_ball(){
+ 135   1              ;
+ 136   1      }
+ 137          //draw now ball
+ 138          void draw_ball(){
+ 139   1              //clear previous ball
+ 140   1              clear_ball();
+ 141   1              //calculate now ball
+ 142   1              move_ball();
+ 143   1              //draw now ball
+ 144   1              set_dot(ball_sit[0],ball_sit[1]);;
+ 145   1      }
+ 146          
+ 147          //refresh screen
+ 148          void refresh_screen(){
+ 149   1              unsigned x,y;//for testing
+ 150   1              //check block
+ 151   1              check_block();
+ 152   1              //draw bar
+ 153   1              if(game_status==1){
+ 154   2                      //continuous status
+ 155   2                      draw_bar();
+ 156   2                      draw_ball();
+ 157   2              }else if(game_status==0){
+ 158   2                      //end status
+ 159   2                      while(1);//for testing
+ 160   2              }else if(game_status==2){
+ 161   2                      //win status
+ 162   2                      /////////////////////////////
+ 163   2                      //for testing
+ 164   2                      choose_screen(0);
+ 165   2                      for(x=0;x<8;x++){
+ 166   3                      for(y=0;y<64;y++){
+ 167   4                              lcd_write_command(0xb8|x);
+ 168   4                              lcd_write_command(0x40|y);
+ 169   4                              lcd_write_data(0xFF);
+ 170   4                              }       
+ 171   3                      }
+ 172   2                      while(1);
+ 173   2                      //////////////////////////////
+ 174   2              }
+ 175   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    105    ----
-   CONSTANT SIZE    =   ----    ----
-C51 COMPILER V8.02   GAME                                                                  11/02/2013 10:05:14 PAGE 2   
+   CODE SIZE        =    390    ----
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 18:31:43 PAGE 4   
 
+   CONSTANT SIZE    =    256    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      4       2
+   DATA SIZE        =      9      12
    IDATA SIZE       =   ----    ----
-   BIT SIZE         =      1    ----
+   BIT SIZE         =      3    ----
 END OF MODULE INFORMATION.
 
 

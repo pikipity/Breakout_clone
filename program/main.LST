@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   MAIN                                                                  11/02/2013 10:05:14 PAGE 1   
+C51 COMPILER V8.02   MAIN                                                                  11/02/2013 18:31:43 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   53   2                      //every 0.03s refresh screen
   54   2                      if(count>=screen_count){
   55   3                              //refresh screen
-C51 COMPILER V8.02   MAIN                                                                  11/02/2013 10:05:14 PAGE 2   
+C51 COMPILER V8.02   MAIN                                                                  11/02/2013 18:31:43 PAGE 2   
 
   56   3                              refresh_screen();
   57   3                              //clear count

@@ -4,6 +4,6 @@
 extern void game_init(void);
 extern void refresh_screen(void);
 //extern void move_ball(void);
-extern void move_bar(void);
+//extern void move_bar(void);
 
 #endif

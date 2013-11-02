@@ -15,6 +15,7 @@ extern void lcd_write_data(unsigned char RWdata);//write data to LCD
 extern unsigned char lcd_read_data(void);
 extern void lcd_init(void);//LCD initialization
 extern void first_page(void);//clear screen
+extern void choose_screen(unsigned char screen);//choose screen
 //figure functions
 extern void set_dot(unsigned char x,unsigned char y); //set a dot at (x,y)
 extern void clear_dot(unsigned char x,unsigned char y);	//clear a dot at (x,y)
