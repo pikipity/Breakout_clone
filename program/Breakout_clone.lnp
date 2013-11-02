@@ -1,0 +1,5 @@
+"lcd12864.obj",
+"main.obj",
+"game.obj" 
+TO "Breakout_clone" 
+RAMSIZE(256) 

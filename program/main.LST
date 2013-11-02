@@ -1,0 +1,100 @@
+C51 COMPILER V8.02   MAIN                                                                  11/02/2013 10:05:14 PAGE 1   
+
+
+C51 COMPILER V8.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "game.h"
+   3          
+   4          //timer1 init value
+   5          #define TH1value 0x63
+   6          #define TL1value 0xC0
+   7          //refesh screen count
+   8          #define screen_count 3
+   9          
+  10          extern bit bar_direction;
+  11          
+  12          
+  13          //count for timer
+  14          unsigned char count=0;
+  15          
+  16          //Use timer1 to count time
+  17          //timer1 initial
+  18          //timer -> 0.01s
+  19          void init_timer1(){
+  20   1              TMOD=0x10;
+  21   1              TH1=TH1value;
+  22   1              TL1=TL1value;
+  23   1              TR1=1;
+  24   1      }
+  25          
+  26          //External int init
+  27          void init_external(){
+  28   1              IT0=1;
+  29   1              IT1=1;
+  30   1      }
+  31          
+  32          //int init
+  33          void init_int(){
+  34   1              EA=1;
+  35   1              ET1=1;
+  36   1              EX0=1;
+  37   1              EX1=1;
+  38   1      }
+  39          
+  40          void hardware_init(){
+  41   1              init_timer1();
+  42   1              init_external();
+  43   1              init_int();
+  44   1      }
+  45          
+  46          void main(){
+  47   1              //init timer1 and two external interrupts
+  48   1              hardware_init();
+  49   1              //init screen
+  50   1              game_init();
+  51   1              //begin game
+  52   1              while(1){
+  53   2                      //every 0.03s refresh screen
+  54   2                      if(count>=screen_count){
+  55   3                              //refresh screen
+C51 COMPILER V8.02   MAIN                                                                  11/02/2013 10:05:14 PAGE 2   
+
+  56   3                              refresh_screen();
+  57   3                              //clear count
+  58   3                              count=0;
+  59   3                      }
+  60   2              }
+  61   1      }
+  62          
+  63          void int_timer1() interrupt 3{
+  64   1              count++;
+  65   1              TH1=TH1value;
+  66   1              TL1=TL1value;
+  67   1      }
+  68          
+  69          void int_external0() interrupt 0{
+  70   1              bar_direction=0;
+  71   1      }
+  72          
+  73          void int_external1() interrupt 2{
+  74   1              bar_direction=1;
+  75   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     71    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

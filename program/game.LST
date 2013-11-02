@@ -1,0 +1,75 @@
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 10:05:14 PAGE 1   
+
+
+C51 COMPILER V8.02, COMPILATION OF MODULE GAME
+OBJECT MODULE PLACED IN game.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE game.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "game.h"
+   3          #include "lcd12864.h"
+   4          
+   5          //location of the most left point of bar
+   6          unsigned char bar_sit_x=23;
+   7          unsigned char bar_sit_y=63;
+   8          //bar speed
+   9          unsigned char bar_speed=3;
+  10          //bar length
+  11          unsigned char bar_len=16;
+  12          //bar direction
+  13          bit bar_direction=0;//0:left, 1:right
+  14          
+  15          void game_init(){
+  16   1              lcd_init();
+  17   1              first_page();
+  18   1      }
+  19          
+  20          void clear_bar(){
+  21   1              unsigned char i;
+  22   1              for(i=0;i<bar_len;i++){
+  23   2                      clear_dot(bar_sit_x+i,bar_sit_y);
+  24   2              }
+  25   1      }
+  26          
+  27          void draw_bar(){
+  28   1              unsigned char i;
+  29   1              for(i=0;i<bar_len;i++){
+  30   2                      set_dot(bar_sit_x+i,bar_sit_y);
+  31   2              }
+  32   1      }
+  33          
+  34          void move_bar(){
+  35   1              if(bar_direction){
+  36   2                      if(bar_sit_x<=113-bar_speed){
+  37   3                              bar_sit_x+=bar_speed;
+  38   3                      }
+  39   2              }else{
+  40   2                      if(bar_sit_x>=0+bar_speed){
+  41   3                              bar_sit_x-=bar_speed;
+  42   3                      }
+  43   2              }
+  44   1      }
+  45          
+  46          void refresh_screen(){
+  47   1              clear_bar();
+  48   1              move_bar();
+  49   1              draw_bar();
+  50   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    105    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 10:05:14 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

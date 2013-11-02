@@ -1,0 +1,171 @@
+C51 COMPILER V8.02   LCD12864                                                              11/02/2013 10:05:14 PAGE 1   
+
+
+C51 COMPILER V8.02, COMPILATION OF MODULE LCD12864
+OBJECT MODULE PLACED IN lcd12864.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE lcd12864.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <intrins.h>
+   3          #include "lcd12864.h"
+   4          
+   5          void delay(){
+   6   1              _nop_();
+   7   1      }
+   8          
+   9          void choose_screen(unsigned char screen){
+  10   1              if(screen==0){//all screen
+  11   2                      CS1=0;
+  12   2                      CS2=0;
+  13   2              }else if(screen==1){//left screen
+  14   2                      CS1=0;
+  15   2                      CS2=1;
+  16   2              }else if(screen==2){//right screen
+  17   2                      CS1=1;
+  18   2                      CS2=0;
+  19   2              }
+  20   1      }
+  21          
+  22          void check_busy(){
+  23   1              unsigned char count;
+  24   1              RW=1;
+  25   1              RS=0;
+  26   1              EN=0;
+  27   1              while(1){
+  28   2                      EN=1;
+  29   2                      if(!(lcddata&0x80)){
+  30   3                              break;
+  31   3                      }
+  32   2                      EN=0;
+  33   2                      if(count++>10){
+  34   3                              break;
+  35   3                      }
+  36   2              }
+  37   1              EN=0;
+  38   1      }
+  39          
+  40          void lcd_write_command(unsigned char command){
+  41   1              check_busy();
+  42   1              RS=0;
+  43   1              RW=0;
+  44   1              EN=0;
+  45   1              lcddata=command;
+  46   1              EN=1;
+  47   1              delay();
+  48   1              EN=0;
+  49   1      }
+  50          
+  51          void lcd_write_data(unsigned char rdata){
+  52   1              check_busy();
+  53   1              RS=1;
+  54   1              RW=0;
+  55   1              EN=0;
+C51 COMPILER V8.02   LCD12864                                                              11/02/2013 10:05:14 PAGE 2   
+
+  56   1              lcddata=rdata;
+  57   1              EN=1;
+  58   1              delay();
+  59   1              EN=0;
+  60   1      }
+  61          
+  62          void lcd_init(void){
+  63   1              lcd_write_command(0x3f);
+  64   1              lcd_write_command(0xc0);
+  65   1              lcd_write_command(0xb8);
+  66   1              lcd_write_command(0x40);
+  67   1      }
+  68          
+  69          void first_page(void){
+  70   1              unsigned char x,y;
+  71   1              choose_screen(0);
+  72   1              for(x=0xb8;x<0xc0;x++){
+  73   2                      lcd_write_command(x);
+  74   2                      lcd_write_command(0x40);
+  75   2                      for(y=0;y<64;y++){
+  76   3                              lcd_write_data(0);
+  77   3                      }
+  78   2              }
+  79   1      }
+  80          
+  81          unsigned char lcd_read_data(){
+  82   1              unsigned char rdata;
+  83   1              check_busy();
+  84   1              RS=1;
+  85   1              RW=1;
+  86   1              lcddata=0xFF;
+  87   1              EN=1;
+  88   1              rdata=lcddata;
+  89   1              EN=0;
+  90   1              check_busy();
+  91   1              RS=1;
+  92   1              RW=1;
+  93   1              lcddata=0xFF;
+  94   1              EN=1;
+  95   1              rdata=lcddata;
+  96   1              EN=0;
+  97   1              return rdata;
+  98   1      }
+  99          
+ 100          void set_dot(unsigned char x,unsigned char y){
+ 101   1              unsigned char ybyte,rdata,xbit,ybit;
+ 102   1              if(x<128 && y<64){
+ 103   2              //choose screen
+ 104   2              choose_screen(x/64+1);
+ 105   2              //adjust x
+ 106   2              xbit=x%64;
+ 107   2              //choose row
+ 108   2              ybyte=y/8;
+ 109   2              //choose bit
+ 110   2              ybit=y%8;
+ 111   2              //read data and get rdata
+ 112   2              lcd_write_command(0xb8|ybyte);
+ 113   2              lcd_write_command(0x40|xbit);
+ 114   2              rdata=lcd_read_data();
+ 115   2              rdata=rdata|(0x01<<ybit);
+ 116   2              //write data
+ 117   2              lcd_write_command(0xb8|ybyte);
+C51 COMPILER V8.02   LCD12864                                                              11/02/2013 10:05:14 PAGE 3   
+
+ 118   2              lcd_write_command(0x40|xbit);
+ 119   2              lcd_write_data(rdata);
+ 120   2              }
+ 121   1      }
+ 122          
+ 123          void clear_dot(unsigned char x,unsigned char y){
+ 124   1              unsigned char ybyte,rdata,xbit,ybit;
+ 125   1              if(x<128 && y<64){
+ 126   2              //choose screen
+ 127   2              choose_screen(x/64+1);
+ 128   2              //adjust x
+ 129   2              xbit=x%64;
+ 130   2              //choose row
+ 131   2              ybyte=y/8;
+ 132   2              //choose bit
+ 133   2              ybit=y%8;
+ 134   2              //read data and get rdata
+ 135   2              lcd_write_command(0xb8|ybyte);
+ 136   2              lcd_write_command(0x40|xbit);
+ 137   2              rdata=lcd_read_data();
+ 138   2              rdata=rdata&(0xFE<<ybit);
+ 139   2              //write data
+ 140   2              lcd_write_command(0xb8|ybyte);
+ 141   2              lcd_write_command(0x40|xbit);
+ 142   2              lcd_write_data(rdata);
+ 143   2              }
+ 144   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    324    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
