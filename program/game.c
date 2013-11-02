@@ -77,7 +77,7 @@ void game_init(){
 //location of the most left point of bar
 unsigned char bar_sit[]={0,63};//(x,y)
 //bar speed
-unsigned char bar_speed=3;
+unsigned char bar_speed=1;
 //bar length
 unsigned char bar_len=16;
 //bar direction
@@ -120,7 +120,7 @@ void draw_bar(){
 //location of ball
 unsigned char ball_sit[]={7,62};//(x,y)
 //ball speed
-unsigned char ball_speed[]={0,3};//(x,y)
+unsigned char ball_speed[]={0,1};//(x,y)
 //bar direction
 bit ball_direction_x=0;//x: 0->left, 1->right.  
 bit ball_direction_y=0;//y: 0->down, 1->up.
@@ -132,7 +132,109 @@ void clear_ball(){
 }
 //calculate now ball
 void move_ball(){
-	;
+	bit next_dot_y,next_dot_x;
+	unsigned char i;
+	//check whether the direction should be changed
+	if(ball_direction_y){
+		if(read_dot(ball_sit[0],ball_sit[1]-1) || ball_sit[1]==0){
+			clear_dot(ball_sit[0],ball_sit[1]-1);
+			ball_direction_y=~ball_direction_y;	
+		}
+	}else{
+		if(read_dot(ball_sit[0],ball_sit[1]+1)){
+			if(ball_sit[1]!=63){
+				if(ball_sit[1]+1!=bar_sit[1]){
+					clear_dot(ball_sit[0],ball_sit[1]+1);
+				}else{
+					ball_speed[0]=bar_speed;
+					ball_direction_x=bar_direction;
+				}
+				ball_direction_y=~ball_direction_y;
+			}else{
+				game_status=0;
+			}
+		}
+	}
+	if(game_status==1){
+	if(ball_direction_x){
+		if(read_dot(ball_sit[0]+1,ball_sit[1]) || ball_sit[0]==127){
+			clear_dot(ball_sit[0]+1,ball_sit[1]);
+			ball_direction_x=~ball_direction_x;
+		}
+	}else{
+		if(read_dot(ball_sit[0]-1,ball_sit[1]) || ball_sit[0]==0){
+			clear_dot(ball_sit[0]-1,ball_sit[1]);
+			ball_direction_x=~ball_direction_x;
+		}
+	}
+	//according to y direction to check next y dot status
+	next_dot_y=0;
+	if(ball_direction_y){
+		//go up
+		for(i=1;i<1+ball_speed[1];i++){//check if there a dot in speed range
+			if(ball_sit[1]-i==0){
+				next_dot_y=1;
+				ball_sit[1]-=i;
+				break;
+			}else if(read_dot(ball_sit[0],ball_sit[1]-i)){//if there is a dot
+				next_dot_y=1;
+				ball_sit[1]-=(i-1);
+				break;
+			}
+		}
+		if(~next_dot_y){
+			ball_sit[1]-=ball_speed[1];
+		}
+	}else{
+		//go down
+		for(i=1;i<1+ball_speed[1];i++){//check if there a dot in speed range
+			if(read_dot(ball_sit[0],ball_sit[1]+i)){//if there is a dot
+				next_dot_y=1;
+				ball_sit[1]+=(i-1);
+				break;
+			}
+		}
+		if(~next_dot_y){
+			ball_sit[1]+=ball_speed[1];
+		}
+	}
+	//according to x direction to check next x dot status
+	next_dot_x=0;
+	if(ball_direction_x){
+		//go right
+		for(i=1;i<1+ball_speed[1];i++){//check if there a dot in speed range
+			if(ball_sit[0]+i==127){
+				next_dot_x=1;
+				ball_sit[0]+=i;
+				break;
+			}else if(read_dot(ball_sit[0]+i,ball_sit[1])){//if there is a dot
+				next_dot_x=1;
+				ball_sit[0]+=(i-1);
+				break;
+			}
+		}
+		if(~next_dot_x){
+			ball_sit[0]+=ball_speed[0];
+		}
+	}else{
+		//go left
+		for(i=1;i<1+ball_speed[1];i++){//check if there a dot in speed range
+			if(ball_sit[0]-i==0){
+				next_dot_x=1;
+				ball_sit[0]-=i;
+				break;
+			}else if(read_dot(ball_sit[0]-i,ball_sit[1])){//if there is a dot
+				next_dot_x=1;
+				ball_sit[0]-=(i-1);
+				break;
+			}
+		}
+		if(~next_dot_x){
+			ball_sit[0]-=ball_speed[0];
+		}
+	}
+	}
+
 }
 //draw now ball
 void draw_ball(){
@@ -156,7 +258,18 @@ void refresh_screen(){
 		draw_ball();
 	}else if(game_status==0){
 		//end status
-		while(1);//for testing
+		////////////////////////////////
+		//for testing
+		choose_screen(0);
+		for(x=0;x<8;x++){
+		for(y=0;y<64;y++){
+			lcd_write_command(0xb8|x);
+			lcd_write_command(0x40|y);
+			lcd_write_data(0x00);
+			}	
+		}
+		while(1);
+		////////////////////////////////
 	}else if(game_status==2){
 		//win status
 		/////////////////////////////

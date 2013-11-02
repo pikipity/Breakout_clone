@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   LCD12864                                                              11/02/2013 18:31:43 PAGE 1   
+C51 COMPILER V8.02   LCD12864                                                              11/02/2013 23:17:35 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE LCD12864
@@ -62,7 +62,7 @@ line level    source
   53   1              RS=1;
   54   1              RW=0;
   55   1              EN=0;
-C51 COMPILER V8.02   LCD12864                                                              11/02/2013 18:31:43 PAGE 2   
+C51 COMPILER V8.02   LCD12864                                                              11/02/2013 23:17:35 PAGE 2   
 
   56   1              lcddata=rdata;
   57   1              EN=1;
@@ -126,7 +126,7 @@ line level    source
  115   2              rdata=rdata|(0x01<<ybit);
  116   2              //write data
  117   2              lcd_write_command(0xb8|ybyte);
-C51 COMPILER V8.02   LCD12864                                                              11/02/2013 18:31:43 PAGE 3   
+C51 COMPILER V8.02   LCD12864                                                              11/02/2013 23:17:35 PAGE 3   
 
  118   2              lcd_write_command(0x40|xbit);
  119   2              lcd_write_data(rdata);
@@ -148,23 +148,46 @@ line level    source
  135   2              lcd_write_command(0xb8|ybyte);
  136   2              lcd_write_command(0x40|xbit);
  137   2              rdata=lcd_read_data();
- 138   2              rdata=rdata&(0xFE<<ybit);
+ 138   2              rdata=rdata&(~(0x01<<ybit));
  139   2              //write data
  140   2              lcd_write_command(0xb8|ybyte);
  141   2              lcd_write_command(0x40|xbit);
  142   2              lcd_write_data(rdata);
  143   2              }
  144   1      }
+ 145          
+ 146          bit read_dot(unsigned char x,unsigned char y){
+ 147   1              unsigned char ybyte,rdata,xbit,ybit;
+ 148   1              bit rbit;
+ 149   1              if(x<128 && y<64){
+ 150   2              //choose screen
+ 151   2              choose_screen(x/64+1);
+ 152   2              //adjust x
+ 153   2              xbit=x%64;
+ 154   2              //choose row
+ 155   2              ybyte=y/8;
+ 156   2              //choose bit
+ 157   2              ybit=y%8;
+ 158   2              //read data and get rdata
+ 159   2              lcd_write_command(0xb8|ybyte);
+ 160   2              lcd_write_command(0x40|xbit);
+ 161   2              rdata=lcd_read_data();
+ 162   2              rbit=(rdata>>ybit)&0x01;
+ 163   2              }else{
+ 164   2              rbit=1;
+ 165   2              }
+ 166   1              return rbit;
+ 167   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    324    ----
+   CODE SIZE        =    404    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----       1
    IDATA SIZE       =   ----    ----
-   BIT SIZE         =   ----    ----
+   BIT SIZE         =   ----       1
 END OF MODULE INFORMATION.
 
 

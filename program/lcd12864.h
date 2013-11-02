@@ -19,5 +19,6 @@ extern void choose_screen(unsigned char screen);//choose screen
 //figure functions
 extern void set_dot(unsigned char x,unsigned char y); //set a dot at (x,y)
 extern void clear_dot(unsigned char x,unsigned char y);	//clear a dot at (x,y)
+extern bit read_dot(unsigned char x,unsigned char y);//read dot information at (x,y)
 
 #endif

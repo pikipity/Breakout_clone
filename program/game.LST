@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   GAME                                                                  11/02/2013 18:31:43 PAGE 1   
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 23:17:35 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE GAME
@@ -62,7 +62,7 @@ line level    source
   53   4                                      if(rdata!=0x00){
   54   5                                              game_status=now_game_status;
   55   5                                              break;
-C51 COMPILER V8.02   GAME                                                                  11/02/2013 18:31:43 PAGE 2   
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 23:17:35 PAGE 2   
 
   56   5                                      }
   57   4                              }
@@ -88,7 +88,7 @@ line level    source
   77          //location of the most left point of bar
   78          unsigned char bar_sit[]={0,63};//(x,y)
   79          //bar speed
-  80          unsigned char bar_speed=3;
+  80          unsigned char bar_speed=1;
   81          //bar length
   82          unsigned char bar_len=16;
   83          //bar direction
@@ -126,14 +126,14 @@ line level    source
  115   2                      set_dot(bar_sit[0]+i,bar_sit[1]);
  116   2              }
  117   1      }
-C51 COMPILER V8.02   GAME                                                                  11/02/2013 18:31:43 PAGE 3   
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 23:17:35 PAGE 3   
 
  118          
  119          //variables of ball
  120          //location of ball
  121          unsigned char ball_sit[]={7,62};//(x,y)
  122          //ball speed
- 123          unsigned char ball_speed[]={0,3};//(x,y)
+ 123          unsigned char ball_speed[]={0,1};//(x,y)
  124          //bar direction
  125          bit ball_direction_x=0;//x: 0->left, 1->right.  
  126          bit ball_direction_y=0;//y: 0->down, 1->up.
@@ -145,59 +145,174 @@ line level    source
  132   1      }
  133          //calculate now ball
  134          void move_ball(){
- 135   1              ;
- 136   1      }
- 137          //draw now ball
- 138          void draw_ball(){
- 139   1              //clear previous ball
- 140   1              clear_ball();
- 141   1              //calculate now ball
- 142   1              move_ball();
- 143   1              //draw now ball
- 144   1              set_dot(ball_sit[0],ball_sit[1]);;
- 145   1      }
- 146          
- 147          //refresh screen
- 148          void refresh_screen(){
- 149   1              unsigned x,y;//for testing
- 150   1              //check block
- 151   1              check_block();
- 152   1              //draw bar
- 153   1              if(game_status==1){
- 154   2                      //continuous status
- 155   2                      draw_bar();
- 156   2                      draw_ball();
- 157   2              }else if(game_status==0){
- 158   2                      //end status
- 159   2                      while(1);//for testing
- 160   2              }else if(game_status==2){
- 161   2                      //win status
- 162   2                      /////////////////////////////
- 163   2                      //for testing
- 164   2                      choose_screen(0);
- 165   2                      for(x=0;x<8;x++){
- 166   3                      for(y=0;y<64;y++){
- 167   4                              lcd_write_command(0xb8|x);
- 168   4                              lcd_write_command(0x40|y);
- 169   4                              lcd_write_data(0xFF);
- 170   4                              }       
- 171   3                      }
- 172   2                      while(1);
- 173   2                      //////////////////////////////
- 174   2              }
- 175   1      }
+ 135   1              bit next_dot_y,next_dot_x;
+ 136   1              unsigned char i;
+ 137   1              //check whether the direction should be changed
+ 138   1              if(ball_direction_y){
+ 139   2                      if(read_dot(ball_sit[0],ball_sit[1]-1) || ball_sit[1]==0){
+ 140   3                              clear_dot(ball_sit[0],ball_sit[1]-1);
+ 141   3                              ball_direction_y=~ball_direction_y;     
+ 142   3                      }
+ 143   2              }else{
+ 144   2                      if(read_dot(ball_sit[0],ball_sit[1]+1)){
+ 145   3                              if(ball_sit[1]!=63){
+ 146   4                                      if(ball_sit[1]+1!=bar_sit[1]){
+ 147   5                                              clear_dot(ball_sit[0],ball_sit[1]+1);
+ 148   5                                      }else{
+ 149   5                                              ball_speed[0]=bar_speed;
+ 150   5                                              ball_direction_x=bar_direction;
+ 151   5                                      }
+ 152   4                                      ball_direction_y=~ball_direction_y;
+ 153   4                              }else{
+ 154   4                                      game_status=0;
+ 155   4                              }
+ 156   3                      }
+ 157   2              }
+ 158   1              if(game_status==1){
+ 159   2              if(ball_direction_x){
+ 160   3                      if(read_dot(ball_sit[0]+1,ball_sit[1]) || ball_sit[0]==127){
+ 161   4                              clear_dot(ball_sit[0]+1,ball_sit[1]);
+ 162   4                              ball_direction_x=~ball_direction_x;
+ 163   4                      }
+ 164   3              }else{
+ 165   3                      if(read_dot(ball_sit[0]-1,ball_sit[1]) || ball_sit[0]==0){
+ 166   4                              clear_dot(ball_sit[0]-1,ball_sit[1]);
+ 167   4                              ball_direction_x=~ball_direction_x;
+ 168   4                      }
+ 169   3              }
+ 170   2              //according to y direction to check next y dot status
+ 171   2              next_dot_y=0;
+ 172   2              if(ball_direction_y){
+ 173   3                      //go up
+ 174   3                      for(i=1;i<1+ball_speed[1];i++){//check if there a dot in speed range
+ 175   4                              if(ball_sit[1]-i==0){
+ 176   5                                      next_dot_y=1;
+ 177   5                                      ball_sit[1]-=i;
+ 178   5                                      break;
+ 179   5                              }else if(read_dot(ball_sit[0],ball_sit[1]-i)){//if there is a dot
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 23:17:35 PAGE 4   
+
+ 180   5                                      next_dot_y=1;
+ 181   5                                      ball_sit[1]-=(i-1);
+ 182   5                                      break;
+ 183   5                              }
+ 184   4                      }
+ 185   3                      if(~next_dot_y){
+ 186   4                              ball_sit[1]-=ball_speed[1];
+ 187   4                      }
+ 188   3              }else{
+ 189   3                      //go down
+ 190   3                      for(i=1;i<1+ball_speed[1];i++){//check if there a dot in speed range
+ 191   4                              if(read_dot(ball_sit[0],ball_sit[1]+i)){//if there is a dot
+ 192   5                                      next_dot_y=1;
+ 193   5                                      ball_sit[1]+=(i-1);
+ 194   5                                      break;
+ 195   5                              }
+ 196   4                      }
+ 197   3                      if(~next_dot_y){
+ 198   4                              ball_sit[1]+=ball_speed[1];
+ 199   4                      }
+ 200   3              }
+ 201   2              //according to x direction to check next x dot status
+ 202   2              next_dot_x=0;
+ 203   2              if(ball_direction_x){
+ 204   3                      //go right
+ 205   3                      for(i=1;i<1+ball_speed[1];i++){//check if there a dot in speed range
+ 206   4                              if(ball_sit[0]+i==127){
+ 207   5                                      next_dot_x=1;
+ 208   5                                      ball_sit[0]+=i;
+ 209   5                                      break;
+ 210   5                              }else if(read_dot(ball_sit[0]+i,ball_sit[1])){//if there is a dot
+ 211   5                                      next_dot_x=1;
+ 212   5                                      ball_sit[0]+=(i-1);
+ 213   5                                      break;
+ 214   5                              }
+ 215   4                      }
+ 216   3                      if(~next_dot_x){
+ 217   4                              ball_sit[0]+=ball_speed[0];
+ 218   4                      }
+ 219   3              }else{
+ 220   3                      //go left
+ 221   3                      for(i=1;i<1+ball_speed[1];i++){//check if there a dot in speed range
+ 222   4                              if(ball_sit[0]-i==0){
+ 223   5                                      next_dot_x=1;
+ 224   5                                      ball_sit[0]-=i;
+ 225   5                                      break;
+ 226   5                              }else if(read_dot(ball_sit[0]-i,ball_sit[1])){//if there is a dot
+ 227   5                                      next_dot_x=1;
+ 228   5                                      ball_sit[0]-=(i-1);
+ 229   5                                      break;
+ 230   5                              }
+ 231   4                      }
+ 232   3                      if(~next_dot_x){
+ 233   4                              ball_sit[0]-=ball_speed[0];
+ 234   4                      }
+ 235   3              }
+ 236   2              }
+ 237   1      
+ 238   1      }
+ 239          //draw now ball
+ 240          void draw_ball(){
+ 241   1              //clear previous ball
+C51 COMPILER V8.02   GAME                                                                  11/02/2013 23:17:35 PAGE 5   
+
+ 242   1              clear_ball();
+ 243   1              //calculate now ball
+ 244   1              move_ball();
+ 245   1              //draw now ball
+ 246   1              set_dot(ball_sit[0],ball_sit[1]);;
+ 247   1      }
+ 248          
+ 249          //refresh screen
+ 250          void refresh_screen(){
+ 251   1              unsigned x,y;//for testing
+ 252   1              //check block
+ 253   1              check_block();
+ 254   1              //draw bar
+ 255   1              if(game_status==1){
+ 256   2                      //continuous status
+ 257   2                      draw_bar();
+ 258   2                      draw_ball();
+ 259   2              }else if(game_status==0){
+ 260   2                      //end status
+ 261   2                      ////////////////////////////////
+ 262   2                      //for testing
+ 263   2                      choose_screen(0);
+ 264   2                      for(x=0;x<8;x++){
+ 265   3                      for(y=0;y<64;y++){
+ 266   4                              lcd_write_command(0xb8|x);
+ 267   4                              lcd_write_command(0x40|y);
+ 268   4                              lcd_write_data(0x00);
+ 269   4                              }       
+ 270   3                      }
+ 271   2                      while(1);
+ 272   2                      ////////////////////////////////
+ 273   2              }else if(game_status==2){
+ 274   2                      //win status
+ 275   2                      /////////////////////////////
+ 276   2                      //for testing
+ 277   2                      choose_screen(0);
+ 278   2                      for(x=0;x<8;x++){
+ 279   3                      for(y=0;y<64;y++){
+ 280   4                              lcd_write_command(0xb8|x);
+ 281   4                              lcd_write_command(0x40|y);
+ 282   4                              lcd_write_data(0xFF);
+ 283   4                              }       
+ 284   3                      }
+ 285   2                      while(1);
+ 286   2                      //////////////////////////////
+ 287   2              }
+ 288   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    390    ----
-C51 COMPILER V8.02   GAME                                                                  11/02/2013 18:31:43 PAGE 4   
-
+   CODE SIZE        =    921    ----
    CONSTANT SIZE    =    256    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      9      12
+   DATA SIZE        =      9      13
    IDATA SIZE       =   ----    ----
-   BIT SIZE         =      3    ----
+   BIT SIZE         =      3       2
 END OF MODULE INFORMATION.
 
 

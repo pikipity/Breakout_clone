@@ -135,10 +135,33 @@ void clear_dot(unsigned char x,unsigned char y){
 	lcd_write_command(0xb8|ybyte);
 	lcd_write_command(0x40|xbit);
 	rdata=lcd_read_data();
-	rdata=rdata&(0xFE<<ybit);
+	rdata=rdata&(~(0x01<<ybit));
 	//write data
 	lcd_write_command(0xb8|ybyte);
 	lcd_write_command(0x40|xbit);
 	lcd_write_data(rdata);
 	}
+}
+
+bit read_dot(unsigned char x,unsigned char y){
+	unsigned char ybyte,rdata,xbit,ybit;
+	bit rbit;
+	if(x<128 && y<64){
+	//choose screen
+	choose_screen(x/64+1);
+	//adjust x
+	xbit=x%64;
+	//choose row
+	ybyte=y/8;
+	//choose bit
+	ybit=y%8;
+	//read data and get rdata
+	lcd_write_command(0xb8|ybyte);
+	lcd_write_command(0x40|xbit);
+	rdata=lcd_read_data();
+	rbit=(rdata>>ybit)&0x01;
+	}else{
+	rbit=1;
+	}
+	return rbit;
 }
