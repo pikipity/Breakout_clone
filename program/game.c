@@ -65,60 +65,62 @@ void check_block(){
 	}
 }
 
-//initial fiunction
-//init the game
-void game_init(){
-	lcd_init();
-	first_page();
-	draw_block();
-}
-
 //variables of bar
 //location of the most left point of bar
 unsigned char bar_sit[]={0,63};//(x,y)
 //bar speed
 unsigned char bar_speed=1;
 //bar length
-unsigned char bar_len=16;
+unsigned char bar_len=24;
 //bar direction
 bit bar_direction=1;//0:left, 1:right
 
-//functions for bar
-//clear preview bar
-void clear_bar(){
+//initial fiunction
+//init the game
+void game_init(){
 	unsigned char i;
-	for(i=0;i<bar_len;i++){
-		clear_dot(bar_sit[0]+i,bar_sit[1]);
-	}
-}
-//calculate now bar
-void move_bar(){
-	if(bar_direction){
-		if(bar_sit[0]<=113-bar_speed){
-			bar_sit[0]+=bar_speed;
-		}
-	}else{
-		if(bar_sit[0]>=0+bar_speed){
-			bar_sit[0]-=bar_speed;
-		}
-	}
-}
-//draw bar
-void draw_bar(){
-	unsigned char i;
-	//first, clear previous bar
-	clear_bar();
-	//calculate now bar
-	move_bar();
-	//draw now bar
+	lcd_init();
+	first_page();
+	draw_block();
 	for(i=0;i<bar_len;i++){
 		set_dot(bar_sit[0]+i,bar_sit[1]);
 	}
 }
 
+//functions for bar
+//draw bar
+void draw_bar(){
+	unsigned char i;
+	if(bar_direction){
+		//go right
+		if(bar_sit[0]<=128-bar_len-bar_speed){
+			for(i=1;i<bar_speed+1;i++){
+				//clear preivous bar
+				clear_dot(bar_sit[0]+i-1,bar_sit[1]);
+				//draw new bar
+				set_dot(bar_sit[0]+bar_len-1+i,bar_sit[1]);
+			}
+			//recalculate bar location
+			bar_sit[0]+=bar_speed;
+		}
+	}else{
+		//go left
+		if(bar_sit[0]>=0+bar_speed){
+			for(i=1;i<bar_speed+1;i++){
+				//clear preivous bar
+				clear_dot(bar_sit[0]+bar_len-i,bar_sit[1]);
+				//draw new bar
+				set_dot(bar_sit[0]-i,bar_sit[1]);
+			}
+			//recalculate bar location
+			bar_sit[0]-=bar_speed;
+		}
+	}
+}
+
 //variables of ball
 //location of ball
-unsigned char ball_sit[]={7,62};//(x,y)
+unsigned char ball_sit[]={1,62};//(x,y)
 //ball speed
 unsigned char ball_speed[]={0,1};//(x,y)
 //bar direction
