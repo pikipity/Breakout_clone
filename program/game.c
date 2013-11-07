@@ -723,44 +723,92 @@ void refresh_screen(){
 	}else if(game_status==0){
 		//end status
 		if(life==0){
+			//die information
 			 //show life
 			if(frame_finish==0){
 				number_frame=0;
 			}
-			max_number_frame=30;
-			if(number_frame<max_number_frame){
+			if(number_frame<30){
 				if(frame_finish==0){
 					show_life(life);
 					frame_finish=1;
 				}
-			}else{
-			//"DIE!"
-			first_page();
-			for(i=0;i<4;i++){
-				for(y=0;y<12;y++){
-					for(x=0;x<3;x++){
-						flag=0;
-						y+=30+20*i;
-						x+=1;
-						if(y<64){
-							choose_screen(1);
-						}else{
-							choose_screen(2);
-							y-=64;
-							flag=1;
-						}
-						lcd_write_command(0xb8|x);
-						lcd_write_command(0x40|y);
-						if(flag){
-							y+=64;
-						}
-						y-=30+20*i;
-						x-=1;
-						lcd_write_data(die[y+x*12+i*36]);
+			}else if(number_frame==30){
+				//show "DIE!"
+				first_page();
+				for(i=0;i<4;i++){
+					for(y=0;y<12;y++){
+						for(x=0;x<3;x++){
+							flag=0;
+							y+=30+20*i;
+							x+=1;
+							if(y<64){
+								choose_screen(1);
+							}else{
+								choose_screen(2);
+								y-=64;
+								flag=1;
+							}
+							lcd_write_command(0xb8|x);
+							lcd_write_command(0x40|y);
+							if(flag){
+								y+=64;
+							}
+							y-=30+20*i;
+							x-=1;
+							lcd_write_data(die[y+x*12+i*36]);
+						}	
 					}	
 				}
-			}
-			while(1);
+			}else if(number_frame>30){
+				//check button
+				start=1;
+				if(start==0){
+					first_page();
+					game_status=4;
+					frame_finish=0;
+				}else{
+				//flashing
+					if(number_frame>50){
+						number_frame=31;
+					}else if(number_frame>40 && number_frame<50){
+						choose_screen(0);
+						for(x=6;x<8;x++){
+							for(y=0;y<64;y++){
+								lcd_write_command(0xb8|x);
+								lcd_write_command(0x40|y);
+								lcd_write_data(0x00);
+							}
+						}
+					}else if(number_frame<40){
+						for(i=0;i<11;i++){
+							for(y=0;y<6;y++){
+								for(x=0;x<2;x++){
+									flag=0;
+									y+=20+7*i;
+									x+=6;
+									if(y<64){
+										choose_screen(1);
+									}else{
+										choose_screen(2);
+										y-=64;
+										flag=1;
+									}
+									if(y<64){
+										lcd_write_command(0xb8|x);
+										lcd_write_command(0x40|y);
+									if(flag){
+										y+=64;
+									}
+									y-=20+7*i;
+									x-=6;
+									lcd_write_data(press_start[y+x*6+i*12]);
+									}
+								}	
+							}
+						}
+					}
+				}
 			}
 		}else{
 			//show life
@@ -785,32 +833,84 @@ void refresh_screen(){
 	}else if(game_status==2){
 		//win status
 		//"WIN!"
-		first_page();
-		for(i=0;i<4;i++){
-			for(y=0;y<12;y++){
-				for(x=0;x<3;x++){
-					flag=0;
-					y+=30+20*i;
-					x+=1;
-					if(y<64){
-						choose_screen(1);
-					}else{
-						choose_screen(2);
-						y-=64;
-						flag=1;
-					}
-					lcd_write_command(0xb8|x);
-					lcd_write_command(0x40|y);
-					if(flag){
-						y+=64;
-					}
-					y-=30+20*i;
-					x-=1;
-					lcd_write_data(win[y+x*12+i*36]);
-				}	
+		if(frame_finish==0){
+			frame_finish=1;
+			number_frame=0;
+			first_page();
+			for(i=0;i<4;i++){
+				for(y=0;y<12;y++){
+					for(x=0;x<3;x++){
+						flag=0;
+						y+=30+20*i;
+						x+=1;
+						if(y<64){
+							choose_screen(1);
+						}else{
+							choose_screen(2);
+							y-=64;
+							flag=1;
+						}
+						lcd_write_command(0xb8|x);
+						lcd_write_command(0x40|y);
+						if(flag){
+							y+=64;
+						}
+						y-=30+20*i;
+						x-=1;
+						lcd_write_data(win[y+x*12+i*36]);
+					}	
+				}
 			}
+		}else{
+			//check button
+			start=1;
+			if(start==0){
+				first_page();
+				game_status=4;
+				frame_finish=0;
+			}else{
+			//flashing
+			if(number_frame>20){
+				number_frame=0;
+			}else if(number_frame>10 && number_frame<20){
+				choose_screen(0);
+				for(x=6;x<8;x++){
+					for(y=0;y<64;y++){
+						lcd_write_command(0xb8|x);
+						lcd_write_command(0x40|y);
+						lcd_write_data(0x00);
+					}
+				}
+			}else if(number_frame<30){
+				for(i=0;i<11;i++){
+					for(y=0;y<6;y++){
+						for(x=0;x<2;x++){
+							flag=0;
+							y+=20+7*i;
+							x+=6;
+							if(y<64){
+								choose_screen(1);
+							}else{
+								choose_screen(2);
+								y-=64;
+								flag=1;
+							}
+							if(y<64){
+							lcd_write_command(0xb8|x);
+							lcd_write_command(0x40|y);
+							if(flag){
+								y+=64;
+							}
+							y-=20+7*i;
+							x-=6;
+							lcd_write_data(press_start[y+x*6+i*12]);
+							}
+						}	
+					}
+				}
+			}
+			}	
 		}
-		while(1);
 	}
 	}
 }
