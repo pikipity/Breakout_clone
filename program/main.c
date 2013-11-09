@@ -7,17 +7,16 @@
 //refesh screen count
 #define screen_count 3
 
-extern bit bar_direction;
-
-
-//count for timer
+//count for timer1
 unsigned char count=0;
+
+extern bit bar_direction;
 
 //Use timer1 to count time
 //timer1 initial
 //timer -> 0.01s
 void init_timer1(){
-	TMOD=0x10;
+	TMOD=TMOD|0x10;
 	TH1=TH1value;
 	TL1=TL1value;
 	TR1=1;
@@ -41,6 +40,7 @@ void hardware_init(){
 	init_timer1();
 	init_external();
 	init_int();
+	LS1=0xFF;
 }
 
 void main(){

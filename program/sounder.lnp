@@ -1,0 +1,3 @@
+"sounder_main.obj" 
+TO "sounder" 
+RAMSIZE(256) 

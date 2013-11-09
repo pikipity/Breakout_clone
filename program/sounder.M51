@@ -1,0 +1,176 @@
+BL51 BANKED LINKER/LOCATER V6.00                                                        11/10/2013  00:27:43  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.00, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE sounder_main.obj TO sounder RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  sounder_main.obj (SOUNDER_MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  sounder (SOUNDER_MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         ?DT?SOUNDER_MAIN
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0008H     UNIT         ?PR?HARDWARE_INIT?SOUNDER_MAIN
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     008CH     UNIT         ?C_C51STARTUP
+            CODE    009AH     003EH     UNIT         ?PR?MAIN?SOUNDER_MAIN
+            CODE    00D8H     0032H     UNIT         ?PR?_SOUNDER_DO?SOUNDER_MAIN
+            CODE    010AH     002CH     UNIT         ?CO?SOUNDER_MAIN
+            CODE    0136H     000CH     UNIT         ?PR?INIT_TIMER0?SOUNDER_MAIN
+            CODE    0142H     000AH     UNIT         ?C_INITSEG
+            CODE    014CH     0005H     UNIT         ?PR?INIT_INT?SOUNDER_MAIN
+            CODE    0151H     0003H     UNIT         ?PR?INT_TIMER0?SOUNDER_MAIN
+
+
+
+OVERLAY MAP OF MODULE:   sounder (SOUNDER_MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?SOUNDER_MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?SOUNDER_MAIN
+  +--> ?PR?HARDWARE_INIT?SOUNDER_MAIN
+  +--> ?CO?SOUNDER_MAIN
+  +--> ?PR?_SOUNDER_DO?SOUNDER_MAIN
+
+?PR?HARDWARE_INIT?SOUNDER_MAIN
+  +--> ?PR?INIT_TIMER0?SOUNDER_MAIN
+  +--> ?PR?INIT_INT?SOUNDER_MAIN
+
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/10/2013  00:27:43  PAGE 2
+
+
+?PR?_SOUNDER_DO?SOUNDER_MAIN
+  +--> ?CO?SOUNDER_MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  sounder (SOUNDER_MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SOUNDER_MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  C:0151H         PUBLIC        int_timer0
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0008H         PUBLIC        sounder
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  D:0009H         PUBLIC        sounder_time
+  C:00D8H         PUBLIC        _sounder_do
+  D:00B8H         PUBLIC        IP
+  C:0132H         PUBLIC        level_music
+  C:009AH         PUBLIC        main
+  C:0120H         PUBLIC        title_music
+  C:010AH         PUBLIC        max_sounder
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  B:00B0H.7       PUBLIC        LS1
+  D:008AH         PUBLIC        TL0
+  D:000AH         PUBLIC        music_num
+  B:0088H.4       PUBLIC        TR0
+  C:014CH         PUBLIC        init_int
+  D:00C8H         PUBLIC        T2CON
+  C:0003H         PUBLIC        hardware_init
+  C:0136H         PUBLIC        init_timer0
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _SOUNDER_DO
+  D:0007H         SYMBOL        music
+  C:00D8H         LINE#         34
+  C:00D8H         LINE#         35
+  C:00E4H         LINE#         36
+  C:00E7H         LINE#         37
+  C:00E9H         LINE#         38
+  C:00F5H         LINE#         39
+  C:00FAH         LINE#         40
+  C:00FCH         LINE#         41
+  C:00FCH         LINE#         42
+  C:0104H         LINE#         43
+  C:0106H         LINE#         44
+  C:0109H         LINE#         45
+  C:0109H         LINE#         46
+  C:0109H         LINE#         47
+  -------         ENDPROC       _SOUNDER_DO
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/10/2013  00:27:43  PAGE 3
+
+
+  -------         PROC          INIT_TIMER0
+  C:0136H         LINE#         52
+  C:0136H         LINE#         53
+  C:0139H         LINE#         54
+  C:013CH         LINE#         55
+  C:013FH         LINE#         56
+  C:0141H         LINE#         57
+  -------         ENDPROC       INIT_TIMER0
+  -------         PROC          INIT_INT
+  C:014CH         LINE#         59
+  C:014CH         LINE#         60
+  C:014EH         LINE#         61
+  C:0150H         LINE#         62
+  -------         ENDPROC       INIT_INT
+  -------         PROC          HARDWARE_INIT
+  C:0003H         LINE#         64
+  C:0003H         LINE#         65
+  C:0005H         LINE#         66
+  C:0008H         LINE#         67
+  -------         ENDPROC       HARDWARE_INIT
+  -------         PROC          MAIN
+  C:009AH         LINE#         70
+  C:009AH         LINE#         72
+  C:009DH         LINE#         73
+  C:009DH         LINE#         75
+  C:00A1H         LINE#         76
+  C:00A3H         LINE#         77
+  C:00A6H         LINE#         78
+  C:00A8H         LINE#         79
+  C:00AFH         LINE#         80
+  C:00B8H         LINE#         81
+  C:00BAH         LINE#         82
+  C:00BCH         LINE#         83
+  C:00BFH         LINE#         84
+  C:00BFH         LINE#         85
+  C:00C6H         LINE#         86
+  C:00CFH         LINE#         87
+  C:00D1H         LINE#         88
+  C:00D3H         LINE#         89
+  C:00D6H         LINE#         90
+  C:00D6H         LINE#         91
+  C:00D6H         LINE#         92
+  -------         ENDPROC       MAIN
+  -------         PROC          INT_TIMER0
+  C:0151H         LINE#         95
+  C:0151H         LINE#         96
+  C:0153H         LINE#         97
+  -------         ENDPROC       INT_TIMER0
+  -------         ENDMOD        SOUNDER_MAIN
+
+Program Size: data=12.0 xdata=0 code=340
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

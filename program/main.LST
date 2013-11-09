@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   MAIN                                                                  11/09/2013 09:40:50 PAGE 1   
+C51 COMPILER V8.02   MAIN                                                                  11/10/2013 00:27:45 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE MAIN
@@ -16,40 +16,40 @@ line level    source
    7          //refesh screen count
    8          #define screen_count 3
    9          
-  10          extern bit bar_direction;
-  11          
+  10          //count for timer1
+  11          unsigned char count=0;
   12          
-  13          //count for timer
-  14          unsigned char count=0;
-  15          
-  16          //Use timer1 to count time
-  17          //timer1 initial
-  18          //timer -> 0.01s
-  19          void init_timer1(){
-  20   1              TMOD=0x10;
-  21   1              TH1=TH1value;
-  22   1              TL1=TL1value;
-  23   1              TR1=1;
-  24   1      }
-  25          
-  26          //External int init
-  27          void init_external(){
-  28   1              IT0=1;
-  29   1              IT1=1;
-  30   1      }
-  31          
-  32          //int init
-  33          void init_int(){
-  34   1              EA=1;
-  35   1              ET1=1;
-  36   1              EX0=1;
-  37   1              EX1=1;
-  38   1      }
-  39          
-  40          void hardware_init(){
-  41   1              init_timer1();
-  42   1              init_external();
-  43   1              init_int();
+  13          extern bit bar_direction;
+  14          
+  15          //Use timer1 to count time
+  16          //timer1 initial
+  17          //timer -> 0.01s
+  18          void init_timer1(){
+  19   1              TMOD=TMOD|0x10;
+  20   1              TH1=TH1value;
+  21   1              TL1=TL1value;
+  22   1              TR1=1;
+  23   1      }
+  24          
+  25          //External int init
+  26          void init_external(){
+  27   1              IT0=1;
+  28   1              IT1=1;
+  29   1      }
+  30          
+  31          //int init
+  32          void init_int(){
+  33   1              EA=1;
+  34   1              ET1=1;
+  35   1              EX0=1;
+  36   1              EX1=1;
+  37   1      }
+  38          
+  39          void hardware_init(){
+  40   1              init_timer1();
+  41   1              init_external();
+  42   1              init_int();
+  43   1              LS1=0xFF;
   44   1      }
   45          
   46          void main(){
@@ -62,7 +62,7 @@ line level    source
   53   2                      //every 0.03s refresh screen
   54   2                      if(count>=screen_count){
   55   3                              //refresh screen
-C51 COMPILER V8.02   MAIN                                                                  11/09/2013 09:40:50 PAGE 2   
+C51 COMPILER V8.02   MAIN                                                                  11/10/2013 00:27:45 PAGE 2   
 
   56   3                              refresh_screen();
   57   3                              //clear count
@@ -87,7 +87,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     71    ----
+   CODE SIZE        =     75    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -718,6 +718,8 @@ void refresh_screen(){
 		number_frame++;
 	}
 	if(game_status==4){
+		//start music
+		LS1=title_music;
 		//show title
 		if(frame_begin==0){
 			number_frame=0;
@@ -807,6 +809,7 @@ void refresh_screen(){
 			//check button
 			start=1;
 			if(start==0){
+				LS1=change;
 				first_page();
 				draw_block();
 				game_status=6;
@@ -816,9 +819,17 @@ void refresh_screen(){
 			if(number_frame>20){
 				number_frame=0;
 			}else if(number_frame>10 && number_frame<20){
-				choose_screen(0);
+				choose_screen(1);
 				for(x=6;x<8;x++){
-					for(y=0;y<64;y++){
+					for(y=20;y<64;y++){
+						lcd_write_command(0xb8|x);
+						lcd_write_command(0x40|y);
+						lcd_write_data(0x00);
+					}
+				}
+				choose_screen(2);
+				for(x=6;x<8;x++){
+					for(y=0;y<43;y++){
 						lcd_write_command(0xb8|x);
 						lcd_write_command(0x40|y);
 						lcd_write_data(0x00);
@@ -855,6 +866,8 @@ void refresh_screen(){
 			}
 		}
 	}else if(game_status==6){
+		//start music
+		LS1=level_music;
 		//show level
 		//show life
 		if(frame_finish==0){

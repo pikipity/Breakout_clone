@@ -1,0 +1,123 @@
+C51 COMPILER V8.02   SOUNDER_MAIN                                                          11/10/2013 00:27:43 PAGE 1   
+
+
+C51 COMPILER V8.02, COMPILATION OF MODULE SOUNDER_MAIN
+OBJECT MODULE PLACED IN sounder_main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE sounder_main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          #define reciver P2
+   4          #define change 0x00
+   5          #define title 0x01
+   6          #define level 0x02
+   7          
+   8          //timer0 autoreload value
+   9          #define TH0value 0xEC
+  10          //length of one sound
+  11          #define begin_skip 30
+  12          #define end_skip 220 
+  13          #define max_sounder_time 250
+  14          
+  15          sbit LS1=P3^7;
+  16          
+  17          //count for timer0
+  18          unsigned char sounder=0;
+  19          
+  20          //music
+  21          //define 7 notes
+  22          unsigned char code max_sounder[]={95,85,76,71,63,57,50,48,42,38,36,32,28,25,190,170,151,143,127,113,101,95
+             -};
+  23          //the length of one note
+  24          unsigned char sounder_time=0;
+  25          //define music sheet
+  26          //do:1,     re:2,     mi:3,     fa:4,     so:5,     la:6,     si:7,
+  27          //do_up:8,  re_up:9,  mi_up:10, fa_up:11, so_up:12, la_up:13, si_up:14,
+  28          //do_low:15,re_low:16,mi_low:17,fa_low:18,so_low:19,la_low:20,si_low:21,
+  29          //skip,22,end:0
+  30          unsigned char music_num=0;
+  31          unsigned char code title_music[]={15,15,17,19,19,17,15,15,17,19,19,17,15,15,16,17,16,0};
+  32          unsigned char code level_music[]={15,15,2,0};
+  33          
+  34          void sounder_do(unsigned char music){
+  35   1              if(sounder>=max_sounder[music-1]){
+  36   2                      sounder=0;
+  37   2                      sounder_time++;
+  38   2                      if(sounder_time>=begin_skip && sounder_time<end_skip){
+  39   3                              if(music!=22){
+  40   4                                      LS1=~LS1;
+  41   4                              }
+  42   3                      }else if(sounder_time>=max_sounder_time){
+  43   3                              music_num++;
+  44   3                              sounder_time=0;
+  45   3                      }
+  46   2              }       
+  47   1      }
+  48          
+  49          //Use timer0 to control sounder
+  50          //timer0 initial
+  51          //timer -> 10us
+  52          void init_timer0(){
+  53   1              TMOD=TMOD|0x02;
+  54   1              TL0=TH0value;
+C51 COMPILER V8.02   SOUNDER_MAIN                                                          11/10/2013 00:27:43 PAGE 2   
+
+  55   1              TH0=TH0value;
+  56   1              TR0=1;
+  57   1      }
+  58          
+  59          void init_int(){
+  60   1              EA=1;
+  61   1              ET0=1;
+  62   1      }
+  63          
+  64          void hardware_init(){
+  65   1              LS1=0;
+  66   1              init_timer0();
+  67   1              init_int();
+  68   1      }
+  69          
+  70          void main(){
+  71   1              //init timer1 and two external interrupts
+  72   1              hardware_init();
+  73   1              while(1){
+  74   2                      //adjust sound
+  75   2                      if(reciver==change){
+  76   3                              TR0=0;
+  77   3                              TL0=TH0value;
+  78   3                              TR0=1;
+  79   3                      }else if(reciver==title){
+  80   3                              if(title_music[music_num]==0){
+  81   4                                      music_num=0;
+  82   4                              }else{
+  83   4                                      sounder_do(title_music[music_num]);
+  84   4                              }
+  85   3                      }else if(reciver==level){
+  86   3                              if(level_music[music_num]==0){
+  87   4                                      music_num=0;
+  88   4                              }else{
+  89   4                                      sounder_do(level_music[music_num]);
+  90   4                              }
+  91   3                      }
+  92   2              }
+  93   1      }
+  94          
+  95          void int_timer0() interrupt 1{
+  96   1              sounder++;      
+  97   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    140    ----
+   CONSTANT SIZE    =     44    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
