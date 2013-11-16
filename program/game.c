@@ -1473,7 +1473,6 @@ void refresh_screen(){
 		if(life==0){
 			//init level
 			level=1;
-			life=5;
 			//die information
 			 //show life
 			if(frame_finish==0){
@@ -1516,6 +1515,7 @@ void refresh_screen(){
 				start=1;
 				if(start==0){
 					first_page();
+					life=5;
 					game_status=4;
 					frame_finish=0;
 				}else{

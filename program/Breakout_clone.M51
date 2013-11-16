@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.00                                                        11/16/2013  10:50:14  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.00                                                        11/16/2013  11:00:09  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.00, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  Breakout_clone (LCD12864)
             CODE    2399H     0033H     UNIT         ?PR?CLEAR_LOW_SCREEN?GAME
             CODE    23CCH     002EH     UNIT         ?C_INITSEG
             CODE    23FAH     002BH     UNIT         ?PR?_LCD_WRITE_COMMAND?LCD12864
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 2
 
 
             CODE    2425H     002AH     UNIT         ?PR?DRAW_BALL?GAME
@@ -119,7 +119,7 @@ SEGMENT                                    BIT_GROUP          DATA_GROUP
 ?PR?CHECK_BUSY?LCD12864                 -----    -----      002BH    0001H
 
 ?PR?FIRST_PAGE?LCD12864                 -----    -----      -----    -----
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 3
 
 
   +--> ?PR?_CHOOSE_SCREEN?LCD12864
@@ -179,7 +179,7 @@ SEGMENT                                    BIT_GROUP          DATA_GROUP
   +--> ?PR?_LCD_WRITE_COMMAND?LCD12864
   +--> ?PR?LCD_READ_DATA?LCD12864
   +--> ?PR?_LCD_WRITE_DATA?LCD12864
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 4
 
 
 
@@ -239,7 +239,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
 
   VALUE           TYPE          NAME
   ----------------------------------
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 5
 
 
 
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   -------         ENDDO         
   C:24B5H         LINE#         22
   C:24B5H         LINE#         24
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 6
 
 
   C:24B7H         LINE#         25
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   D:0005H         SYMBOL        x
   D:0004H         SYMBOL        y
   -------         ENDDO         
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 7
 
 
   C:2473H         LINE#         69
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:2393H         LINE#         119
   C:2398H         LINE#         120
   C:2398H         LINE#         121
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 8
 
 
   -------         ENDPROC       _SET_DOT
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
   C:0016H         PUBLIC        init_external
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 9
 
 
   D:0090H         PUBLIC        P1
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:2550H         LINE#         41
   C:2552H         LINE#         42
   C:2554H         LINE#         43
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 10
 
 
   C:2556H         LINE#         44
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   D:000AH         PUBLIC        level
   D:000BH         PUBLIC        prop_x
   D:000CH         PUBLIC        prop_y
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 11
 
 
   D:000DH         PUBLIC        longer_time
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   D:001CH         PUBLIC        number_frame
   -------         PROC          RANDOM_PROP
   -------         DO            
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 12
 
 
   D:0007H         SYMBOL        prop_num
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:1CABH         LINE#         296
   C:1CB0H         LINE#         297
   C:1CB2H         LINE#         298
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 13
 
 
   C:1CB4H         LINE#         299
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:1DB9H         LINE#         353
   C:1DC3H         LINE#         354
   C:1DCBH         LINE#         355
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 14
 
 
   C:1DD5H         LINE#         356
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   -------         DO            
   D:0026H         SYMBOL        x
   D:0027H         SYMBOL        y
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 15
 
 
   D:0028H         SYMBOL        i
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:1F6AH         LINE#         449
   C:1F6FH         LINE#         450
   C:1F75H         LINE#         451
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 16
 
 
   C:1F77H         LINE#         452
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:21FAH         LINE#         624
   C:2202H         LINE#         625
   C:220AH         LINE#         626
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 17
 
 
   C:220DH         LINE#         627
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:20B9H         LINE#         699
   C:20BDH         LINE#         701
   C:20C4H         LINE#         702
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 18
 
 
   C:20C4H         LINE#         703
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:1673H         LINE#         769
   C:1683H         LINE#         770
   C:168BH         LINE#         771
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 19
 
 
   C:1691H         LINE#         772
@@ -1139,7 +1139,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:17DFH         LINE#         826
   C:17E9H         LINE#         827
   C:17F5H         LINE#         828
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 20
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 20
 
 
   C:17F7H         LINE#         829
@@ -1199,7 +1199,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:1974H         LINE#         883
   C:197DH         LINE#         884
   C:1980H         LINE#         885
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 21
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 21
 
 
   C:1993H         LINE#         886
@@ -1259,7 +1259,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:1AA1H         LINE#         942
   C:1AA3H         LINE#         944
   C:1ABBH         LINE#         945
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 22
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 22
 
 
   C:1AD5H         LINE#         946
@@ -1319,7 +1319,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   -------         DO            
   B:0021H.1       SYMBOL        flag
   B:0021H.2       SYMBOL        x_change
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 23
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 23
 
 
   D:0022H         SYMBOL        i
@@ -1379,7 +1379,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:0174H         LINE#         1068
   C:017AH         LINE#         1069
   C:0181H         LINE#         1070
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 24
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 24
 
 
   C:0186H         LINE#         1071
@@ -1439,7 +1439,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:02A7H         LINE#         1128
   C:02AFH         LINE#         1129
   C:02B7H         LINE#         1130
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 25
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 25
 
 
   C:02BCH         LINE#         1131
@@ -1499,7 +1499,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:03D6H         LINE#         1189
   C:03DCH         LINE#         1190
   C:03DCH         LINE#         1191
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 26
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 26
 
 
   C:03DCH         LINE#         1192
@@ -1559,7 +1559,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:04D2H         LINE#         1248
   C:04D5H         LINE#         1249
   C:04D5H         LINE#         1250
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 27
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 27
 
 
   C:04D5H         LINE#         1251
@@ -1619,7 +1619,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:05E6H         LINE#         1306
   C:05F0H         LINE#         1307
   C:05F8H         LINE#         1308
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 28
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 28
 
 
   C:0601H         LINE#         1309
@@ -1679,7 +1679,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:0700H         LINE#         1364
   C:0713H         LINE#         1365
   C:0718H         LINE#         1366
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 29
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 29
 
 
   C:071AH         LINE#         1367
@@ -1739,7 +1739,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:081BH         LINE#         1422
   C:081DH         LINE#         1423
   C:081FH         LINE#         1424
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 30
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 30
 
 
   C:0820H         LINE#         1425
@@ -1787,46 +1787,46 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:0909H         LINE#         1471
   C:090CH         LINE#         1473
   C:0913H         LINE#         1475
-  C:0916H         LINE#         1476
+  C:0916H         LINE#         1478
   C:0919H         LINE#         1479
-  C:091CH         LINE#         1480
-  C:091EH         LINE#         1481
-  C:091EH         LINE#         1482
-  C:0925H         LINE#         1483
-  C:092BH         LINE#         1484
-  C:092BH         LINE#         1485
-  C:092BH         LINE#         1486
-  C:092BH         LINE#         1487
+  C:091BH         LINE#         1480
+  C:091BH         LINE#         1481
+  C:0922H         LINE#         1482
+  C:0928H         LINE#         1483
+  C:0928H         LINE#         1484
+  C:0928H         LINE#         1485
+  C:0928H         LINE#         1486
+  C:0934H         LINE#         1488
   C:0937H         LINE#         1489
   C:093AH         LINE#         1490
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 31
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 31
 
 
   C:093DH         LINE#         1491
   C:0940H         LINE#         1492
-  C:0943H         LINE#         1493
-  C:0945H         LINE#         1494
-  C:0951H         LINE#         1495
-  C:0953H         LINE#         1496
-  C:0958H         LINE#         1497
-  C:095DH         LINE#         1498
-  C:095FH         LINE#         1499
-  C:0964H         LINE#         1500
-  C:096AH         LINE#         1501
-  C:096CH         LINE#         1502
-  C:096CH         LINE#         1503
-  C:0974H         LINE#         1504
+  C:0942H         LINE#         1493
+  C:094EH         LINE#         1494
+  C:0950H         LINE#         1495
+  C:0955H         LINE#         1496
+  C:095AH         LINE#         1497
+  C:095CH         LINE#         1498
+  C:0961H         LINE#         1499
+  C:0967H         LINE#         1500
+  C:0969H         LINE#         1501
+  C:0969H         LINE#         1502
+  C:0971H         LINE#         1503
+  C:0979H         LINE#         1504
   C:097CH         LINE#         1505
-  C:097FH         LINE#         1506
-  C:0985H         LINE#         1507
-  C:0985H         LINE#         1508
-  C:0994H         LINE#         1509
-  C:0996H         LINE#         1510
-  C:09BFH         LINE#         1511
-  C:09CBH         LINE#         1512
-  C:09D7H         LINE#         1513
-  C:09E4H         LINE#         1514
-  C:09EEH         LINE#         1516
+  C:0982H         LINE#         1506
+  C:0982H         LINE#         1507
+  C:0991H         LINE#         1508
+  C:0993H         LINE#         1509
+  C:09BCH         LINE#         1510
+  C:09C8H         LINE#         1511
+  C:09D4H         LINE#         1512
+  C:09E1H         LINE#         1513
+  C:09EBH         LINE#         1515
+  C:09EDH         LINE#         1516
   C:09F0H         LINE#         1517
   C:09F3H         LINE#         1518
   C:09F6H         LINE#         1519
@@ -1859,7 +1859,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:0A89H         LINE#         1547
   C:0A89H         LINE#         1548
   C:0A90H         LINE#         1549
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 32
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 32
 
 
   C:0A98H         LINE#         1550
@@ -1919,7 +1919,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:0B94H         LINE#         1607
   C:0B97H         LINE#         1608
   C:0B9DH         LINE#         1609
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 33
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 33
 
 
   C:0B9DH         LINE#         1610
@@ -1979,7 +1979,7 @@ SYMBOL TABLE OF MODULE:  Breakout_clone (LCD12864)
   C:0CE3H         LINE#         1667
   C:0D0AH         LINE#         1668
   C:0D0AH         LINE#         1669
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  10:50:14  PAGE 34
+BL51 BANKED LINKER/LOCATER V6.00                                                      11/16/2013  11:00:09  PAGE 34
 
 
   C:0D16H         LINE#         1670
