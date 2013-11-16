@@ -13,12 +13,18 @@
 
 游戏过程中，有四种道具，随机出现在下屏的随机位置。每个道具的图案是一个字母，当小球碰触道具图案时，道具生效。以下是道具介绍：
 
-1. 变长道具（道具图案是 “L” 字样）：道具生效后，平台变为铺满整个屏幕的底边，一段时间后失效，复原为原来长度。
-2. 清除道具（道具图案是 “C” 字样）：生效后，随机清除一部分的砖块。
-3. 胜利道具（道具图案是 “W” 字样）：生效后，此关胜利。
-4. 死亡道具（道具图案是 “D” 字样）：生效后，直接失去一条命。
+1. 变长道具（道具图案是 “L” 字样 ![变长道具](https://lh5.googleusercontent.com/-ay36V6-TnVw/UoeDXl8zxmI/AAAAAAAABWo/aq7HFFR_784/s31/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.20.08.png)）：道具生效后，平台变为铺满整个屏幕的底边，一段时间后失效，复原为原来长度。
+2. 清除道具（道具图案是 “C” 字样 ![清除道具](https://lh6.googleusercontent.com/-_PYJavumack/UoeDX7XP9TI/AAAAAAAABWs/Ign1Zn3GPeA/s33/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.20.24.png)）：生效后，随机清除一部分的砖块。
+3. 胜利道具（道具图案是 “W” 字样 ![胜利道具](https://lh6.googleusercontent.com/-DG5aOe5ti0s/UoeDYLY2ViI/AAAAAAAABWk/OsG_balBJP8/s35/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.21.08.png)）：生效后，此关胜利。
+4. 死亡道具（道具图案是 “D” 字样 ![死亡道具](https://lh3.googleusercontent.com/-btLEA34gYD4/UoeDXMaDysI/AAAAAAAABWU/QtzDuDzqYYM/s29/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.19.42.png)）：生效后，直接失去一条命。
 
-每一关，上半屏砖块组成的图案都不同，下方平台的移动速度也不同，速度会随着关卡数增大而变快，而且平台的长度也会变短，所以难度也会随之增大。小球的纵向移动速度不变，横向移动速度和平台一致，每次碰撞平台的时候，平台的移动方向和速度就会传递给小球。
+每一关，上半屏砖块组成的图案都不同（下面是三关的砖块图案），下方平台的移动速度也不同，速度会随着关卡数增大而变快，而且平台的长度也会变短，所以难度也会随之增大。小球的纵向移动速度不变，横向移动速度和平台一致，每次碰撞平台的时候，平台的移动方向和速度就会传递给小球。
+
+![第一关砖块图案](https://lh5.googleusercontent.com/-OciVp2e6XnE/UoeDXIK9vcI/AAAAAAAABWM/gzRk9e89D7I/s455/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.19.20.png)
+
+![第二关砖块图案](https://lh6.googleusercontent.com/-d3jCz1ka0pw/UoeDaTrBJPI/AAAAAAAABXQ/fnqbIvgXodg/s452/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.24.24.png)
+
+![第三关砖块图案](https://lh6.googleusercontent.com/-BRp240xR57w/UoeDasw4kMI/AAAAAAAABXY/KX8Rw5KPsBQ/s453/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.26.44.png)
 
 
 ## 文件说明
@@ -45,3 +51,16 @@
 ## 电路图
 
 ![电路图](https://lh6.googleusercontent.com/-ldlHxz4m384/UocrUK_Sy4I/AAAAAAAABV0/RSKXVdsHxJc/s720/circuit.jpg)
+
+## 运行画面
+
+![开始画面](https://lh5.googleusercontent.com/-Zfwu4WWGgPA/UoeDXAfFipI/AAAAAAAABWQ/r451XxrQqQs/s543/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.18.47.png)
+
+![游戏进行中的画面](https://lh4.googleusercontent.com/-kP_-IcYWnk0/UoeDY4d1ljI/AAAAAAAABXI/VZ0FNyGnSY4/s535/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.21.47.png)
+
+![死亡后显示剩余生命的画面](https://lh5.googleusercontent.com/-wRC1xSJ4d4E/UoeDZG8JYvI/AAAAAAAABXA/GJjNwrrN1Fk/s544/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.22.17.png)
+
+![5 条命全部耗费完毕之后的画面](https://lh6.googleusercontent.com/-NJ48URX34xc/UoeDZUi1y6I/AAAAAAAABW8/C0oJXVNGqoc/s528/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.22.48.png)
+
+![一关获胜之后的画面](https://lh4.googleusercontent.com/-IM0DGKy4E1Y/UoeDaDz8iLI/AAAAAAAABXc/XecvfvZClZY/s530/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.24.09.png)
+
