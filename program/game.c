@@ -4,6 +4,8 @@
 
 //variables of game
 unsigned char game_status=4;//2: win  1: continue. 0: end  3: firest time show life 4: show title  5: waiting for start  6:show level
+							//7: enter eat longer 8: eat clear 9: eat win  10:eat die
+							//11: quit eat longer
 unsigned char life=5;
 unsigned char number_frame=0;
 unsigned char max_number_frame=0;
@@ -221,6 +223,171 @@ unsigned char code press_start[]={
 	0x01,0x00,0x00,0x00,
 	0x00,0x06,0x02,0xFE,0x02,0x06,0x00,0x00,  // -T-
 	0x01,0x01,0x01,0x00};
+
+unsigned char code prop[]={
+//make bar longer (L): 1
+0xFF,0x81,0x81,0xBF,0xBF,0xBF,0xBF,0xFF,
+//clear one area (C): 2
+0xFF,0xC3,0xBD,0xBD,0xBD,0xBD,0xDB,0xFF,
+//Win (W): 3
+0xFF,0xC1,0xBF,0xC3,0xC3,0xBF,0xC1,0xFF,
+//Die (D): 4
+0xFF,0x81,0x81,0xBD,0xBD,0xDB,0xE7,0xFF
+};
+
+unsigned char prop_exist=0;
+bit longer=0;
+unsigned char longer_time=0;
+unsigned char prop_x=0;
+unsigned char prop_y=0;
+
+unsigned char prop_frame=0;
+
+void random_prop(){
+	unsigned char prop_num,x,y,i;
+	bit x_change;
+	if(longer){
+		if(longer_time<255){
+			longer_time++;
+		}else{
+			longer=0;
+			longer_time=0;
+			game_status=11;
+		}
+	}
+	if(prop_exist==0){
+		prop_num=255-TL0;
+		switch(prop_num){
+			case 1:
+				prop_exist=1;
+				y=TL0;
+				x=255-y;
+				y=(255-y)/5+33;
+				prop_x=x;
+				prop_y=y;
+				y=y/8;
+				for(i=0;i<8;i++){
+					if(x+i<64){
+						choose_screen(1);
+						x_change=0;
+					}else{
+						x-=64;
+						choose_screen(2);
+						x_change=1;
+					}
+					lcd_write_command(0x40|(x+i));
+					lcd_write_command(0xb8|y);
+					lcd_write_data(prop[i]);
+					if(x_change){
+						x+=64;
+					}
+				}
+				break;
+			case 50:
+				prop_exist=2;
+				y=TL0;
+				x=255-y;
+				y=(255-y)/5+33;
+				prop_x=x;
+				prop_y=y;
+				y=y/8;
+				for(i=0;i<8;i++){
+					if(x+i<64){
+						choose_screen(1);
+						x_change=0;
+					}else{
+						x-=64;
+						choose_screen(2);
+						x_change=1;
+					}
+					lcd_write_command(0x40|(x+i));
+					lcd_write_command(0xb8|y);
+					lcd_write_data(prop[i+8]);
+					if(x_change){
+						x+=64;
+					}
+				}
+				break;
+			case 100:
+				prop_exist=3;
+				y=TL0;
+				x=255-y;
+				y=(255-y)/5+33;
+				prop_x=x;
+				prop_y=y;
+				y=y/8;
+				for(i=0;i<8;i++){
+					if(x+i<64){
+						choose_screen(1);
+						x_change=0;
+					}else{
+						x-=64;
+						choose_screen(2);
+						x_change=1;
+					}
+					lcd_write_command(0x40|(x+i));
+					lcd_write_command(0xb8|y);
+					lcd_write_data(prop[i+16]);
+					if(x_change){
+						x+=64;
+					}
+				}
+				break;
+			case 20:
+				prop_exist=4;
+				y=TL0;
+				x=255-y;
+				y=(255-y)/5+33;
+				prop_x=x;
+				prop_y=y;
+				y=y/8;
+				for(i=0;i<8;i++){
+					if(x+i<64){
+						choose_screen(1);
+						x_change=0;
+					}else{
+						x-=64;
+						choose_screen(2);
+						x_change=1;
+					}
+					lcd_write_command(0x40|(x+i));
+					lcd_write_command(0xb8|y);
+					lcd_write_data(prop[i+24]);
+					if(x_change){
+						x+=64;
+					}
+				}
+				break;
+			default:break;
+		}
+	}else{
+		if(prop_frame>100){
+			x=prop_x;
+			y=prop_y;
+			y=y/8;
+			for(i=0;i<8;i++){
+					if(x+i<64){
+						choose_screen(1);
+						x_change=0;
+					}else{
+						x-=64;
+						choose_screen(2);
+						x_change=1;
+					}
+					lcd_write_command(0x40|(x+i));
+					lcd_write_command(0xb8|y);
+					lcd_write_data(0x00);
+					if(x_change){
+						x+=64;
+					}
+			}
+			prop_frame=0;
+			prop_exist=0;
+		}else{
+			prop_frame++;
+		}
+	}
+}
 
 void clear_low_screen(){
 	unsigned char x,y;
@@ -476,6 +643,7 @@ void check_block(){
 //location of the most left point of bar
 unsigned char code o_bar_sit[]={0,63};
 unsigned char bar_sit[2];//(x,y)
+unsigned char temp_bar_sit_x;
 //bar speed
 unsigned char o_bar_speed;
 unsigned char bar_speed;
@@ -492,8 +660,8 @@ void init_bar(){
 	unsigned char i;
 	switch(level){
 		case 1: o_bar_speed=1;o_bar_len=24;break;
-		case 2: o_bar_speed=3;o_bar_len=20;break;
-		case 3: o_bar_speed=6;o_bar_len=12;break;
+		case 2: o_bar_speed=2;o_bar_len=20;break;
+		case 3: o_bar_speed=3;o_bar_len=12;break;
 		default:o_bar_speed=1;o_bar_len=24;break;
 	}
 	bar_sit[0]=o_bar_sit[0];
@@ -510,7 +678,7 @@ void draw_bar(){
 	unsigned char i;
 	if(bar_direction){
 		//go right
-		if(bar_sit[0]<=128-bar_len-bar_speed){
+		if(bar_sit[0]<=128-bar_len-bar_speed && bar_len+bar_speed<=128){
 			for(i=1;i<bar_speed+1;i++){
 				//clear preivous bar
 				clear_dot(bar_sit[0]+i-1,bar_sit[1]);
@@ -573,32 +741,97 @@ void clear_ball(){
 void move_ball(){
 	bit next_dot_y,next_dot_x;
 	unsigned char i;
+	bit x_change;
 	//check whether the direction should be changed
+	LS1=change;
 	if(ball_direction_y){
 		if(read_dot(ball_sit[0],ball_sit[1]-2) || read_dot(ball_sit[0]+1,ball_sit[1]-2) || (ball_sit[1]-1)==0){
-			if((ball_sit[1]-1)!=0){
-				clear_dot(ball_sit[0],ball_sit[1]-2);
-				clear_dot(ball_sit[0]+1,ball_sit[1]-2);
-				if((ball_sit[1]-2)!=0){
-					clear_dot(ball_sit[0],ball_sit[1]-3);
-					clear_dot(ball_sit[0]+1,ball_sit[1]-3);
+			if(ball_sit[1]>34 && ball_sit[1]<62 && ball_sit[0]<126 && ball_sit[0]>0){
+				prop_y=prop_y/8;
+				for(i=0;i<8;i++){
+						if(prop_x+i<64){
+							choose_screen(1);
+							x_change=0;
+						}else{
+							prop_x-=64;
+							choose_screen(2);
+							x_change=1;
+						}
+						lcd_write_command(0x40|(prop_x+i));
+						lcd_write_command(0xb8|prop_y);
+						lcd_write_data(0x00);
+						if(x_change){
+							prop_x+=64;
+						}
 				}
-			}
-			ball_direction_y=~ball_direction_y;	
+				prop_y=prop_y*8;
+				prop_frame=0;
+				switch(prop_exist){
+					case 1:longer=1;game_status=7;break;
+					case 2:game_status=8;break;
+					case 3:game_status=9;break;
+					case 4:game_status=10;break;
+					default:break;
+				}
+				prop_exist=0;
+			}else{
+				LS1=do_1;
+				if((ball_sit[1]-1)!=0){
+					clear_dot(ball_sit[0],ball_sit[1]-2);
+					clear_dot(ball_sit[0]+1,ball_sit[1]-2);
+					if((ball_sit[1]-2)!=0){
+						clear_dot(ball_sit[0],ball_sit[1]-3);
+						clear_dot(ball_sit[0]+1,ball_sit[1]-3);
+					}
+				}
+				ball_direction_y=~ball_direction_y;
+			}	
 		}
 	}else{
 		if(read_dot(ball_sit[0],ball_sit[1]+1) || read_dot(ball_sit[0]+1,ball_sit[1]+1)){
 			if(ball_sit[1]!=63){
-				if(ball_sit[1]+1!=bar_sit[1]){
-					clear_dot(ball_sit[0],ball_sit[1]+1);
-					clear_dot(ball_sit[0]+1,ball_sit[1]+1);
-					clear_dot(ball_sit[0],ball_sit[1]+2);
-					clear_dot(ball_sit[0]+1,ball_sit[1]+2);
+				if(ball_sit[1]>34 && ball_sit[1]<62 && ball_sit[0]<126 && ball_sit[0]>0){
+					prop_y=prop_y/8;
+					for(i=0;i<8;i++){
+							if(prop_x+i<64){
+								choose_screen(1);
+								x_change=0;
+							}else{
+								prop_x-=64;
+								choose_screen(2);
+								x_change=1;
+							}
+							lcd_write_command(0x40|(prop_x+i));
+							lcd_write_command(0xb8|prop_y);
+							lcd_write_data(0x00);
+							if(x_change){
+								prop_x+=64;
+							}
+					}
+					prop_y=prop_y*8;
+					prop_frame=0;
+					switch(prop_exist){
+						case 1:longer=1;game_status=7;break;
+						case 2:game_status=8;break;
+						case 3:game_status=9;break;
+						case 4:game_status=10;break;
+						default:break;
+					}
+					prop_exist=0;
 				}else{
-					ball_speed[0]=bar_speed;
-					ball_direction_x=bar_direction;
+					LS1=do_1;
+					if(ball_sit[1]+1!=bar_sit[1]){
+						clear_dot(ball_sit[0],ball_sit[1]+1);
+						clear_dot(ball_sit[0]+1,ball_sit[1]+1);
+						clear_dot(ball_sit[0],ball_sit[1]+2);
+						clear_dot(ball_sit[0]+1,ball_sit[1]+2);
+					}else{
+						LS1=do_2;
+						ball_speed[0]=bar_speed;
+						ball_direction_x=bar_direction;
+					}
+					ball_direction_y=~ball_direction_y;
 				}
-				ball_direction_y=~ball_direction_y;
 			}else{
 				game_status=0;
 			}
@@ -607,23 +840,85 @@ void move_ball(){
 	if(game_status==1){
 	if(ball_direction_x){
 		if(read_dot(ball_sit[0]+2,ball_sit[1]) || read_dot(ball_sit[0]+2,ball_sit[1]-1) || (ball_sit[0]+1)==127){
-			clear_dot(ball_sit[0]+2,ball_sit[1]);
-			clear_dot(ball_sit[0]+2,ball_sit[1]-1);
-			clear_dot(ball_sit[0]+3,ball_sit[1]);
-			clear_dot(ball_sit[0]+3,ball_sit[1]-1);
-			ball_direction_x=~ball_direction_x;
+			if(ball_sit[1]>34 && ball_sit[1]<62 && ball_sit[0]<126 && ball_sit[0]>0){
+				prop_y=prop_y/8;
+				for(i=0;i<8;i++){
+						if(prop_x+i<64){
+							choose_screen(1);
+							x_change=0;
+						}else{
+							prop_x-=64;
+							choose_screen(2);
+							x_change=1;
+						}
+						lcd_write_command(0x40|(prop_x+i));
+						lcd_write_command(0xb8|prop_y);
+						lcd_write_data(0x00);
+						if(x_change){
+							prop_x+=64;
+						}
+				}
+				prop_y=prop_y*8;
+				prop_frame=0;
+				switch(prop_exist){
+					case 1:longer=1;game_status=7;break;
+					case 2:game_status=8;break;
+					case 3:game_status=9;break;
+					case 4:game_status=10;break;
+					default:break;
+				}
+				prop_exist=0;
+			}else{
+				LS1=do_1;
+				clear_dot(ball_sit[0]+2,ball_sit[1]);
+				clear_dot(ball_sit[0]+2,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+3,ball_sit[1]);
+				clear_dot(ball_sit[0]+3,ball_sit[1]-1);
+				ball_direction_x=~ball_direction_x;
+			}
 		}
 	}else{
 		if(read_dot(ball_sit[0]-1,ball_sit[1]) || read_dot(ball_sit[0]-1,ball_sit[1]-1) || ball_sit[0]==0){
-			if(ball_sit[0]!=0){
-				clear_dot(ball_sit[0]-1,ball_sit[1]);
-				clear_dot(ball_sit[0]-1,ball_sit[1]-1);
-				if((ball_sit[0]-1)!=0){
-					clear_dot(ball_sit[0]-2,ball_sit[1]);
-					clear_dot(ball_sit[0]-2,ball_sit[1]-1);
+			if(ball_sit[1]>34 && ball_sit[1]<62 && ball_sit[0]<126 && ball_sit[0]>0){
+				prop_y=prop_y/8;
+				for(i=0;i<8;i++){
+						if(prop_x+i<64){
+							choose_screen(1);
+							x_change=0;
+						}else{
+							prop_x-=64;
+							choose_screen(2);
+							x_change=1;
+						}
+						lcd_write_command(0x40|(prop_x+i));
+						lcd_write_command(0xb8|prop_y);
+						lcd_write_data(0x00);
+						if(x_change){
+							prop_x+=64;
+						}
 				}
+				prop_y=prop_y*8;
+				prop_frame=0;
+				switch(prop_exist){
+					case 1:longer=1;game_status=7;break;
+					case 2:game_status=8;break;
+					case 3:game_status=9;break;
+					case 4:game_status=10;break;
+					default:break;
+				}
+				prop_exist=0;
+			}else{
+				LS1=do_1;
+				if(ball_sit[0]!=0){
+					clear_dot(ball_sit[0]-1,ball_sit[1]);
+					clear_dot(ball_sit[0]-1,ball_sit[1]-1);
+					if((ball_sit[0]-1)!=0){
+						clear_dot(ball_sit[0]-2,ball_sit[1]);
+						clear_dot(ball_sit[0]-2,ball_sit[1]-1);
+					}
+				}
+				ball_direction_x=~ball_direction_x;
 			}
-			ball_direction_x=~ball_direction_x;
 		}
 	}
 	//according to y direction to check next y dot status
@@ -710,9 +1005,9 @@ void draw_ball(){
 
 //refresh screen
 void refresh_screen(){
-	bit flag;
+	bit flag,x_change;
 	unsigned char i;
-	unsigned char x,y;//for testing
+	unsigned char x,y;
 	//Add frame number
 	if(game_status!=1){
 		number_frame++;
@@ -896,25 +1191,289 @@ void refresh_screen(){
 				frame_finish=1;
 			}
 		}else{
+			TR0=1;
+			LS1=change;
 			clear_low_screen();
 			init_ball();
 			init_bar();
 			game_status=1;
 			frame_finish=0;
 		}
+	}else if(game_status==7){
+		//become longer
+		if(frame_begin==0){
+			frame_begin=1;
+			number_frame=0;
+		}else{
+			if(number_frame<50){
+				if(number_frame%10==0){
+					for(i=0;i<bar_len;i++){
+						clear_dot(i+bar_sit[0],bar_sit[1]);
+					}
+				}else{
+					for(i=0;i<bar_len;i++){
+						set_dot(i+bar_sit[0],bar_sit[1]);
+					}
+				}
+			}else if(number_frame==50){
+				bar_len=128;
+				temp_bar_sit_x=bar_sit[0];
+				bar_sit[0]=0;
+			}else if(number_frame<100){
+				if(number_frame%10==0){
+					for(i=0;i<bar_len;i++){
+						clear_dot(i+bar_sit[0],bar_sit[1]);
+					}
+				}else{
+					for(i=0;i<bar_len;i++){
+						set_dot(i+bar_sit[0],bar_sit[1]);
+					}
+				}
+			}else{
+				for(i=0;i<bar_len;i++){
+					set_dot(i+bar_sit[0],bar_sit[1]);
+				}
+				frame_begin=0;
+				game_status=1;
+				longer_time=0;
+				longer=1;
+			}
+		}
+	}else if(game_status==8){
+		//clear area
+		if(TL0<60){
+			x=0;
+		}else{
+			x=2;
+		}
+		if(frame_begin==0){
+			frame_begin=1;
+			number_frame=0;
+		}else{
+			if(number_frame<50){
+				if(number_frame%10==0){
+					for(i=0;i<2;i++){
+						for(y=0;y<64;y++){
+							choose_screen(0);
+							lcd_write_command(0xb8|x+i);
+							lcd_write_command(0x40|y);
+							lcd_write_data(0x00);
+						}
+					}
+				}else{
+					for(i=0;i<2;i++){
+						for(y=0;y<64;y++){
+							choose_screen(0);
+							lcd_write_command(0xb8|x+i);
+							lcd_write_command(0x40|y);
+							lcd_write_data(0xFF);
+						}
+					}
+				}
+			}else{
+				for(i=0;i<2;i++){
+						for(y=0;y<64;y++){
+							choose_screen(0);
+							lcd_write_command(0xb8|x+i);
+							lcd_write_command(0x40|y);
+							lcd_write_data(0x00);
+						}
+				}
+				frame_begin=0;
+				game_status=1;
+			}
+		}
+	}else if(game_status==9){
+		//win
+		x=prop_x;
+		y=prop_y;
+		y=y/8;
+		if(frame_begin==0){
+			frame_begin=1;
+			number_frame=0;
+		}else{
+			if(number_frame<50){
+				if(number_frame%10==0){
+					for(i=0;i<8;i++){
+						if(x+i<64){
+							choose_screen(1);
+							x_change=0;
+						}else{
+							x-=64;
+							choose_screen(2);
+							x_change=1;
+						}
+						lcd_write_command(0x40|(x+i));
+						lcd_write_command(0xb8|y);
+						lcd_write_data(prop[0x00]);
+						if(x_change){
+							x+=64;
+						}
+					}
+				}else{
+					for(i=0;i<8;i++){
+						if(x+i<64){
+							choose_screen(1);
+							x_change=0;
+						}else{
+							x-=64;
+							choose_screen(2);
+							x_change=1;
+						}
+						lcd_write_command(0x40|(x+i));
+						lcd_write_command(0xb8|y);
+						lcd_write_data(prop[i+16]);
+						if(x_change){
+							x+=64;
+						}		
+					}
+				}
+			}else{
+				for(i=0;i<8;i++){
+					if(x+i<64){
+						choose_screen(1);
+						x_change=0;
+					}else{
+						x-=64;
+						choose_screen(2);
+						x_change=1;
+					}
+					lcd_write_command(0x40|(x+i));
+					lcd_write_command(0xb8|y);
+					lcd_write_data(0x00);
+					if(x_change){
+						x+=64;
+					}
+				}
+				frame_begin=0;
+				game_status=2;
+			}
+		}
+	}else if(game_status==10){
+		//Die
+		x=prop_x;
+		y=prop_y;
+		y=y/8;
+		if(frame_begin==0){
+			frame_begin=1;
+			number_frame=0;
+		}else{
+			if(number_frame<50){
+				if(number_frame%10==0){
+					for(i=0;i<8;i++){
+						if(x+i<64){
+							choose_screen(1);
+							x_change=0;
+						}else{
+							x-=64;
+							choose_screen(2);
+							x_change=1;
+						}
+						lcd_write_command(0x40|(x+i));
+						lcd_write_command(0xb8|y);
+						lcd_write_data(prop[0x00]);
+						if(x_change){
+							x+=64;
+						}
+					}
+				}else{
+					for(i=0;i<8;i++){
+						if(x+i<64){
+							choose_screen(1);
+							x_change=0;
+						}else{
+							x-=64;
+							choose_screen(2);
+							x_change=1;
+						}
+						lcd_write_command(0x40|(x+i));
+						lcd_write_command(0xb8|y);
+						lcd_write_data(prop[i+24]);
+						if(x_change){
+							x+=64;
+						}		
+					}
+				}
+			}else{
+				for(i=0;i<8;i++){
+					if(x+i<64){
+						choose_screen(1);
+						x_change=0;
+					}else{
+						x-=64;
+						choose_screen(2);
+						x_change=1;
+					}
+					lcd_write_command(0x40|(x+i));
+					lcd_write_command(0xb8|y);
+					lcd_write_data(0x00);
+					if(x_change){
+						x+=64;
+					}
+				}
+				frame_begin=0;
+				game_status=0;
+			}
+		}
+	}else if(game_status==11){
+		//end longer
+		if(frame_begin==0){
+			frame_begin=1;
+			number_frame=0;
+			longer=0;
+		}else{
+			if(number_frame<50){
+				if(number_frame%10==0){
+					for(i=0;i<bar_len;i++){
+						clear_dot(i+bar_sit[0],bar_sit[1]);
+					}
+				}else{
+					for(i=0;i<bar_len;i++){
+						set_dot(i+bar_sit[0],bar_sit[1]);
+					}
+				}
+			}else if(number_frame==50){
+				for(i=0;i<bar_len;i++){
+					clear_dot(i+bar_sit[0],bar_sit[1]);
+				}
+				bar_len=o_bar_len;
+				bar_sit[0]=temp_bar_sit_x;
+			}else if(number_frame<100){
+				if(number_frame%10==0){
+					for(i=0;i<bar_len;i++){
+						clear_dot(i+bar_sit[0],bar_sit[1]);
+					}
+				}else{
+					for(i=0;i<bar_len;i++){
+						set_dot(i+bar_sit[0],bar_sit[1]);
+					}
+				}
+			}else{
+				for(i=0;i<bar_len;i++){
+					set_dot(i+bar_sit[0],bar_sit[1]);
+				}
+				frame_begin=0;
+				game_status=1;
+			}
+		}
 	}else{
 	//check block
 	check_block();
 	//draw bar
 	if(game_status==1){
+		//music
+		LS1=run_music;
 		//continuous status
+		random_prop();
 		draw_bar();
 		draw_ball();
 	}else if(game_status==0){
+		LS1=die_music;
 		//end status
 		if(life==0){
 			//init level
 			level=1;
+			life=5;
 			//die information
 			 //show life
 			if(frame_finish==0){
@@ -1025,6 +1584,7 @@ void refresh_screen(){
 	}else if(game_status==2){
 		//win status
 		//"WIN!"
+		LS1=win_music;
 		if(frame_finish==0){
 			frame_finish=1;
 			number_frame=0;
@@ -1065,6 +1625,7 @@ void refresh_screen(){
 					
 				}else{
 					level=1;
+					life=5;
 					game_status=4;
 				}
 				frame_finish=0;

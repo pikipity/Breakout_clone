@@ -4,13 +4,18 @@
 #define change 0x00
 #define title 0x01
 #define level 0x02
+#define run 0x03
+#define do_1 0x04
+#define do_2 0x05
+#define die 0x06
+#define win 0x07
 
 //timer0 autoreload value
 #define TH0value 0xEC
 //length of one sound
-#define begin_skip 30
-#define end_skip 220 
-#define max_sounder_time 250
+#define begin_skip 0
+#define end_skip 190 
+#define max_sounder_time 190
 
 sbit LS1=P3^7;
 
@@ -29,7 +34,11 @@ unsigned char sounder_time=0;
 //skip,22,end:0
 unsigned char music_num=0;
 unsigned char code title_music[]={15,15,17,19,19,17,15,15,17,19,19,17,15,15,16,17,16,0};
-unsigned char code level_music[]={15,15,2,0};
+unsigned char code level_music[]={21,21,20,19,18,20,21,19,20,21,21,0};
+unsigned char code run_music[]={0};
+unsigned char code do_1_music[]={1,0};
+unsigned char code do_2_music[]={2,0};
+unsigned char code die_music[]={21,20,19,18,17,15,15,15,22,22,0};
 
 void sounder_do(unsigned char music){
 	if(sounder>=max_sounder[music-1]){
@@ -75,6 +84,7 @@ void main(){
 		if(reciver==change){
 			TR0=0;
 			TL0=TH0value;
+			music_num=0;
 			TR0=1;
 		}else if(reciver==title){
 			if(title_music[music_num]==0){
@@ -87,6 +97,36 @@ void main(){
 				music_num=0;
 			}else{
 				sounder_do(level_music[music_num]);
+			}
+		}else if(reciver==run){
+			if(run_music[music_num]==0){
+				music_num=0;
+			}else{
+				sounder_do(run_music[music_num]);
+			}
+		}else if(reciver==do_1){
+			if(do_1_music[music_num]==0){
+				music_num=0;
+			}else{
+				sounder_do(do_1_music[music_num]);
+			}
+		}else if(reciver==do_2){
+			if(do_2_music[music_num]==0){
+				music_num=0;
+			}else{
+				sounder_do(do_2_music[music_num]);
+			}
+		}else if(reciver==die){
+			if(die_music[music_num]==0){
+				music_num=0;
+			}else{
+				sounder_do(die_music[music_num]);
+			}
+		}else if(reciver==win){
+			if(title_music[music_num]==0){
+				music_num=0;
+			}else{
+				sounder_do(title_music[music_num]);
 			}
 		}
 	}

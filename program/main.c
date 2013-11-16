@@ -22,6 +22,14 @@ void init_timer1(){
 	TR1=1;
 }
 
+//timer0 initial
+void init_timer0(){
+	TMOD=TMOD|0x02;
+	TL0=256-119;
+	TH0=256-119;
+	TR0=0;
+}
+
 //External int init
 void init_external(){
 	IT0=1;
@@ -38,6 +46,7 @@ void init_int(){
 
 void hardware_init(){
 	init_timer1();
+	init_timer0();
 	init_external();
 	init_int();
 	LS1=0xFF;
