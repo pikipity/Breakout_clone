@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 1   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE GAME
@@ -62,7 +62,7 @@ line level    source
   52                  0x20,0x3F,0x3F,0x20,0x20,0x20,0x20,0x20,
   53                  0x30,0x38,0x3E,0x00,
   54                  0x00,0x00,0x00,0x00,0x00,0xFC,0xFE,0xFC,  // -!-
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 2   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 2   
 
   55                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
   56                  0x00,0x03,0xFF,0x03,0x00,0x00,0x00,0x00,
@@ -126,7 +126,7 @@ line level    source
  114                  0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0x00,
  115                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
  116                  0x00,0x00,0x00,0x00};
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 3   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 3   
 
  117          unsigned char code number[]={
  118                  0x00,0xC0,0xF0,0x38,0x0C,0x04,0x0C,0x38,  // -0-
@@ -190,7 +190,7 @@ line level    source
  176                  0xE0,0xF0,0x18,0x0C,0x04,0x04,0x04,0x0C,  // -O-
  177                  0x18,0xF0,0xE0,0x00,0xFF,0xFF,0x00,0x00,
  178                  0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0x00,
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 4   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 4   
 
  179                  0x07,0x0F,0x18,0x30,0x20,0x20,0x20,0x30,
  180                  0x18,0x0F,0x07,0x00,
@@ -254,7 +254,7 @@ line level    source
  238          unsigned char prop_exist=0;
  239          bit longer=0;
  240          unsigned char longer_time=0;
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 5   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 5   
 
  241          unsigned char prop_x=0;
  242          unsigned char prop_y=0;
@@ -318,7 +318,7 @@ line level    source
  300   5                                                      choose_screen(2);
  301   5                                                      x_change=1;
  302   5                                              }
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 6   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 6   
 
  303   4                                              lcd_write_command(0x40|(x+i));
  304   4                                              lcd_write_command(0xb8|y);
@@ -382,7 +382,7 @@ line level    source
  362   3                      }
  363   2              }else{
  364   2                      if(prop_frame>100){
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 7   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 7   
 
  365   3                              x=prop_x;
  366   3                              y=prop_y;
@@ -446,7 +446,7 @@ line level    source
  424   5                                              }
  425   4                                              y-=20+15*i;
  426   4                                              x-=4;
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 8   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 8   
 
  427   4                                              if(i<5){
  428   5                                                      lcd_write_data(lifefont[y+x*12+i*36]);
@@ -510,7 +510,7 @@ line level    source
  486          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
  487          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
  488          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 9   
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 9   
 
  489          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
  490          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
@@ -574,7 +574,7 @@ line level    source
  548          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
  549          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
  550          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 10  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 10  
 
  551          0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF
  552          };
@@ -638,7 +638,7 @@ line level    source
  610   4                                      default: lcd_write_data(block1[x*64+y]);break;
  611   4                              }
  612   3                      }       
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 11  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 11  
 
  613   2              }
  614   1      }
@@ -702,7 +702,7 @@ line level    source
  672   1              for(i=0;i<bar_len;i++){
  673   2                      set_dot(bar_sit[0]+i,bar_sit[1]);
  674   2              }
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 12  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 12  
 
  675   1      }
  676          //draw bar
@@ -766,7 +766,7 @@ line level    source
  734          void clear_ball(){
  735   1              clear_dot(ball_sit[0],ball_sit[1]);
  736   1              clear_dot(ball_sit[0]+1,ball_sit[1]);
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 13  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 13  
 
  737   1              clear_dot(ball_sit[0],ball_sit[1]-1);
  738   1              clear_dot(ball_sit[0]+1,ball_sit[1]-1);
@@ -830,7 +830,7 @@ line level    source
  796   6                                                              if(prop_x+i<64){
  797   7                                                                      choose_screen(1);
  798   7                                                                      x_change=0;
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 14  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 14  
 
  799   7                                                              }else{
  800   7                                                                      prop_x-=64;
@@ -894,7 +894,7 @@ line level    source
  857   6                                                      if(x_change){
  858   7                                                              prop_x+=64;
  859   7                                                      }
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 15  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 15  
 
  860   6                                      }
  861   5                                      prop_y=prop_y*8;
@@ -958,7 +958,7 @@ line level    source
  919   6                                      }
  920   5                                      ball_direction_x=~ball_direction_x;
  921   5                              }
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 16  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 16  
 
  922   4                      }
  923   3              }
@@ -1022,7 +1022,7 @@ line level    source
  979   5                                      break;
  980   5                              }else if(read_dot(ball_sit[0]-i,ball_sit[1]) || read_dot(ball_sit[0]-i,ball_sit[1]-1)){//if there is a 
              -dot
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 17  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 17  
 
  981   5                                      next_dot_x=1;
  982   5                                      ball_sit[0]-=(i-1);
@@ -1086,7 +1086,7 @@ line level    source
 1040   8                                                                      lcd_write_command(0xb8|x);
 1041   8                                                                      lcd_write_command(0x40|y);
 1042   8                                                                      if(flag){
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 18  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 18  
 
 1043   9                                                                              y+=64;
 1044   9                                                                      }
@@ -1150,7 +1150,7 @@ line level    source
 1102   3                              number_frame=0;
 1103   3                      }else{
 1104   3                              //check button
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 19  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 19  
 
 1105   3                              start=1;
 1106   3                              if(start==0){
@@ -1214,7 +1214,7 @@ line level    source
 1164   2                      //start music
 1165   2                      LS1=level_music;
 1166   2                      //show level
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 20  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 20  
 
 1167   2                      //show life
 1168   2                      if(frame_finish==0){
@@ -1278,7 +1278,7 @@ line level    source
 1226   6                                              }
 1227   5                                      }else{
 1228   5                                              for(i=0;i<bar_len;i++){
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 21  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 21  
 
 1229   6                                                      set_dot(i+bar_sit[0],bar_sit[1]);
 1230   6                                              }
@@ -1342,7 +1342,7 @@ line level    source
 1288   2                      x=prop_x;
 1289   2                      y=prop_y;
 1290   2                      y=y/8;
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 22  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 22  
 
 1291   2                      if(frame_begin==0){
 1292   3                              frame_begin=1;
@@ -1406,7 +1406,7 @@ line level    source
 1350   4                              }
 1351   3                      }
 1352   2              }else if(game_status==10){
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 23  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 23  
 
 1353   2                      //Die
 1354   2                      x=prop_x;
@@ -1470,7 +1470,7 @@ line level    source
 1412   6                                              }
 1413   5                                      }
 1414   4                                      frame_begin=0;
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 24  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 24  
 
 1415   4                                      game_status=0;
 1416   4                              }
@@ -1534,7 +1534,7 @@ line level    source
 1474   4                              //init level
 1475   4                              level=1;
 1476   4                              //die information
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 25  
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 25  
 
 1477   4                               //show life
 1478   4                              if(frame_finish==0){
@@ -1548,212 +1548,218 @@ line level    source
 1486   5                              }else if(number_frame==30){
 1487   5                                      //show "DIE!"
 1488   5                                      first_page();
-1489   5                                      for(i=0;i<4;i++){
-1490   6                                              for(y=0;y<12;y++){
-1491   7                                                      for(x=0;x<3;x++){
-1492   8                                                              flag=0;
-1493   8                                                              y+=30+20*i;
-1494   8                                                              x+=1;
-1495   8                                                              if(y<64){
-1496   9                                                                      choose_screen(1);
-1497   9                                                              }else{
-1498   9                                                                      choose_screen(2);
-1499   9                                                                      y-=64;
-1500   9                                                                      flag=1;
-1501   9                                                              }
-1502   8                                                              lcd_write_command(0xb8|x);
-1503   8                                                              lcd_write_command(0x40|y);
-1504   8                                                              if(flag){
-1505   9                                                                      y+=64;
-1506   9                                                              }
-1507   8                                                              y-=30+20*i;
-1508   8                                                              x-=1;
-1509   8                                                              lcd_write_data(die[y+x*12+i*36]);
-1510   8                                                      }       
-1511   7                                              }       
-1512   6                                      }
-1513   5                              }else if(number_frame>30){
-1514   5                                      //check button
-1515   5                                      start=1;
-1516   5                                      if(start==0){
-1517   6                                              first_page();
-1518   6                                              life=5;
-1519   6                                              game_status=4;
-1520   6                                              frame_finish=0;
-1521   6                                      }else{
-1522   6                                      //flashing
-1523   6                                              if(number_frame>50){
-1524   7                                                      number_frame=31;
-1525   7                                              }else if(number_frame>40 && number_frame<50){
-1526   7                                                      choose_screen(0);
-1527   7                                                      for(x=6;x<8;x++){
-1528   8                                                              for(y=0;y<64;y++){
-1529   9                                                                      lcd_write_command(0xb8|x);
-1530   9                                                                      lcd_write_command(0x40|y);
-1531   9                                                                      lcd_write_data(0x00);
-1532   9                                                              }
-1533   8                                                      }
-1534   7                                              }else if(number_frame<40){
-1535   7                                                      for(i=0;i<11;i++){
-1536   8                                                              for(y=0;y<6;y++){
-1537   9                                                                      for(x=0;x<2;x++){
-1538  10                                                                              flag=0;
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 26  
+1489   5                                      prop_exist=0;
+1490   5                                      longer=0;
+1491   5                                      longer_time=0;
+1492   5                                      for(i=0;i<4;i++){
+1493   6                                              for(y=0;y<12;y++){
+1494   7                                                      for(x=0;x<3;x++){
+1495   8                                                              flag=0;
+1496   8                                                              y+=30+20*i;
+1497   8                                                              x+=1;
+1498   8                                                              if(y<64){
+1499   9                                                                      choose_screen(1);
+1500   9                                                              }else{
+1501   9                                                                      choose_screen(2);
+1502   9                                                                      y-=64;
+1503   9                                                                      flag=1;
+1504   9                                                              }
+1505   8                                                              lcd_write_command(0xb8|x);
+1506   8                                                              lcd_write_command(0x40|y);
+1507   8                                                              if(flag){
+1508   9                                                                      y+=64;
+1509   9                                                              }
+1510   8                                                              y-=30+20*i;
+1511   8                                                              x-=1;
+1512   8                                                              lcd_write_data(die[y+x*12+i*36]);
+1513   8                                                      }       
+1514   7                                              }       
+1515   6                                      }
+1516   5                              }else if(number_frame>30){
+1517   5                                      //check button
+1518   5                                      start=1;
+1519   5                                      if(start==0){
+1520   6                                              first_page();
+1521   6                                              life=5;
+1522   6                                              game_status=4;
+1523   6                                              frame_finish=0;
+1524   6                                      }else{
+1525   6                                      //flashing
+1526   6                                              if(number_frame>50){
+1527   7                                                      number_frame=31;
+1528   7                                              }else if(number_frame>40 && number_frame<50){
+1529   7                                                      choose_screen(0);
+1530   7                                                      for(x=6;x<8;x++){
+1531   8                                                              for(y=0;y<64;y++){
+1532   9                                                                      lcd_write_command(0xb8|x);
+1533   9                                                                      lcd_write_command(0x40|y);
+1534   9                                                                      lcd_write_data(0x00);
+1535   9                                                              }
+1536   8                                                      }
+1537   7                                              }else if(number_frame<40){
+1538   7                                                      for(i=0;i<11;i++){
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 26  
 
-1539  10                                                                              y+=20+7*i;
-1540  10                                                                              x+=6;
-1541  10                                                                              if(y<64){
-1542  11                                                                                      choose_screen(1);
-1543  11                                                                              }else{
-1544  11                                                                                      choose_screen(2);
-1545  11                                                                                      y-=64;
-1546  11                                                                                      flag=1;
-1547  11                                                                              }
-1548  10                                                                              if(y<64){
-1549  11                                                                                      lcd_write_command(0xb8|x);
-1550  11                                                                                      lcd_write_command(0x40|y);
-1551  11                                                                              if(flag){
-1552  12                                                                                      y+=64;
-1553  12                                                                              }
-1554  11                                                                              y-=20+7*i;
-1555  11                                                                              x-=6;
-1556  11                                                                              lcd_write_data(press_start[y+x*6+i*12]);
-1557  11                                                                              }
-1558  10                                                                      }       
-1559   9                                                              }
-1560   8                                                      }
-1561   7                                              }
-1562   6                                      }
-1563   5                              }
-1564   4                      }else{
-1565   4                              //show life
-1566   4                              if(frame_finish==0){
-1567   5                                      number_frame=0;
-1568   5                                      life-=1;
-1569   5                              }
-1570   4                              max_number_frame=30;
-1571   4                              if(number_frame<max_number_frame){
-1572   5                                      if(frame_finish==0){
-1573   6                                              show_life(life);
-1574   6                                              frame_finish=1;
-1575   6                                      }
-1576   5                              }else{
-1577   5                                      clear_low_screen();
-1578   5                                      init_ball();
-1579   5                                      init_bar();
-1580   5                                      game_status=1;
-1581   5                                      frame_finish=0;
-1582   5                              }
-1583   4                      }
-1584   3              }else if(game_status==2){
-1585   3                      //win status
-1586   3                      //"WIN!"
-1587   3                      LS1=win_music;
-1588   3                      if(frame_finish==0){
-1589   4                              frame_finish=1;
-1590   4                              number_frame=0;
-1591   4                              first_page();
-1592   4                              for(i=0;i<4;i++){
-1593   5                                      for(y=0;y<12;y++){
-1594   6                                              for(x=0;x<3;x++){
-1595   7                                                      flag=0;
-1596   7                                                      y+=30+20*i;
-1597   7                                                      x+=1;
-1598   7                                                      if(y<64){
-1599   8                                                              choose_screen(1);
-1600   8                                                      }else{
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 27  
+1539   8                                                              for(y=0;y<6;y++){
+1540   9                                                                      for(x=0;x<2;x++){
+1541  10                                                                              flag=0;
+1542  10                                                                              y+=20+7*i;
+1543  10                                                                              x+=6;
+1544  10                                                                              if(y<64){
+1545  11                                                                                      choose_screen(1);
+1546  11                                                                              }else{
+1547  11                                                                                      choose_screen(2);
+1548  11                                                                                      y-=64;
+1549  11                                                                                      flag=1;
+1550  11                                                                              }
+1551  10                                                                              if(y<64){
+1552  11                                                                                      lcd_write_command(0xb8|x);
+1553  11                                                                                      lcd_write_command(0x40|y);
+1554  11                                                                              if(flag){
+1555  12                                                                                      y+=64;
+1556  12                                                                              }
+1557  11                                                                              y-=20+7*i;
+1558  11                                                                              x-=6;
+1559  11                                                                              lcd_write_data(press_start[y+x*6+i*12]);
+1560  11                                                                              }
+1561  10                                                                      }       
+1562   9                                                              }
+1563   8                                                      }
+1564   7                                              }
+1565   6                                      }
+1566   5                              }
+1567   4                      }else{
+1568   4                              //show life
+1569   4                              if(frame_finish==0){
+1570   5                                      number_frame=0;
+1571   5                                      life-=1;
+1572   5                              }
+1573   4                              max_number_frame=30;
+1574   4                              if(number_frame<max_number_frame){
+1575   5                                      if(frame_finish==0){
+1576   6                                              show_life(life);
+1577   6                                              frame_finish=1;
+1578   6                                      }
+1579   5                              }else{
+1580   5                                      clear_low_screen();
+1581   5                                      init_ball();
+1582   5                                      init_bar();
+1583   5                                      game_status=1;
+1584   5                                      frame_finish=0;
+1585   5                              }
+1586   4                      }
+1587   3              }else if(game_status==2){
+1588   3                      //win status
+1589   3                      //"WIN!"
+1590   3                      LS1=win_music;
+1591   3                      prop_exist=0;
+1592   3                      longer=0;
+1593   3                      longer_time=0;
+1594   3                      if(frame_finish==0){
+1595   4                              frame_finish=1;
+1596   4                              number_frame=0;
+1597   4                              first_page();
+1598   4                              for(i=0;i<4;i++){
+1599   5                                      for(y=0;y<12;y++){
+1600   6                                              for(x=0;x<3;x++){
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 27  
 
-1601   8                                                              choose_screen(2);
-1602   8                                                              y-=64;
-1603   8                                                              flag=1;
-1604   8                                                      }
-1605   7                                                      lcd_write_command(0xb8|x);
-1606   7                                                      lcd_write_command(0x40|y);
-1607   7                                                      if(flag){
-1608   8                                                              y+=64;
-1609   8                                                      }
-1610   7                                                      y-=30+20*i;
-1611   7                                                      x-=1;
-1612   7                                                      lcd_write_data(win[y+x*12+i*36]);
-1613   7                                              }       
-1614   6                                      }
-1615   5                              }
-1616   4                      }else{
-1617   4                              //check button
-1618   4                              start=1;
-1619   4                              if(start==0){
-1620   5                                      first_page();
-1621   5                                      if(level<3){
-1622   6                                              level++;
-1623   6                                              draw_block();
-1624   6                                              game_status=6;
-1625   6                                              
-1626   6                                      }else{
-1627   6                                              level=1;
-1628   6                                              life=5;
-1629   6                                              game_status=4;
-1630   6                                      }
-1631   5                                      frame_finish=0;
-1632   5                              }else{
-1633   5                              //flashing
-1634   5                              if(number_frame>20){
-1635   6                                      number_frame=0;
-1636   6                              }else if(number_frame>10 && number_frame<20){
-1637   6                                      choose_screen(0);
-1638   6                                      for(x=6;x<8;x++){
-1639   7                                              for(y=0;y<64;y++){
-1640   8                                                      lcd_write_command(0xb8|x);
-1641   8                                                      lcd_write_command(0x40|y);
-1642   8                                                      lcd_write_data(0x00);
-1643   8                                              }
-1644   7                                      }
-1645   6                              }else if(number_frame<30){
-1646   6                                      for(i=0;i<11;i++){
-1647   7                                              for(y=0;y<6;y++){
-1648   8                                                      for(x=0;x<2;x++){
-1649   9                                                              flag=0;
-1650   9                                                              y+=20+7*i;
-1651   9                                                              x+=6;
-1652   9                                                              if(y<64){
-1653  10                                                                      choose_screen(1);
-1654  10                                                              }else{
-1655  10                                                                      choose_screen(2);
-1656  10                                                                      y-=64;
-1657  10                                                                      flag=1;
-1658  10                                                              }
-1659   9                                                              if(y<64){
-1660  10                                                              lcd_write_command(0xb8|x);
-1661  10                                                              lcd_write_command(0x40|y);
-1662  10                                                              if(flag){
-C51 COMPILER V8.02   GAME                                                                  11/16/2013 11:00:09 PAGE 28  
+1601   7                                                      flag=0;
+1602   7                                                      y+=30+20*i;
+1603   7                                                      x+=1;
+1604   7                                                      if(y<64){
+1605   8                                                              choose_screen(1);
+1606   8                                                      }else{
+1607   8                                                              choose_screen(2);
+1608   8                                                              y-=64;
+1609   8                                                              flag=1;
+1610   8                                                      }
+1611   7                                                      lcd_write_command(0xb8|x);
+1612   7                                                      lcd_write_command(0x40|y);
+1613   7                                                      if(flag){
+1614   8                                                              y+=64;
+1615   8                                                      }
+1616   7                                                      y-=30+20*i;
+1617   7                                                      x-=1;
+1618   7                                                      lcd_write_data(win[y+x*12+i*36]);
+1619   7                                              }       
+1620   6                                      }
+1621   5                              }
+1622   4                      }else{
+1623   4                              //check button
+1624   4                              start=1;
+1625   4                              if(start==0){
+1626   5                                      first_page();
+1627   5                                      if(level<3){
+1628   6                                              level++;
+1629   6                                              draw_block();
+1630   6                                              game_status=6;
+1631   6                                              
+1632   6                                      }else{
+1633   6                                              level=1;
+1634   6                                              life=5;
+1635   6                                              game_status=4;
+1636   6                                      }
+1637   5                                      frame_finish=0;
+1638   5                              }else{
+1639   5                              //flashing
+1640   5                              if(number_frame>20){
+1641   6                                      number_frame=0;
+1642   6                              }else if(number_frame>10 && number_frame<20){
+1643   6                                      choose_screen(0);
+1644   6                                      for(x=6;x<8;x++){
+1645   7                                              for(y=0;y<64;y++){
+1646   8                                                      lcd_write_command(0xb8|x);
+1647   8                                                      lcd_write_command(0x40|y);
+1648   8                                                      lcd_write_data(0x00);
+1649   8                                              }
+1650   7                                      }
+1651   6                              }else if(number_frame<30){
+1652   6                                      for(i=0;i<11;i++){
+1653   7                                              for(y=0;y<6;y++){
+1654   8                                                      for(x=0;x<2;x++){
+1655   9                                                              flag=0;
+1656   9                                                              y+=20+7*i;
+1657   9                                                              x+=6;
+1658   9                                                              if(y<64){
+1659  10                                                                      choose_screen(1);
+1660  10                                                              }else{
+1661  10                                                                      choose_screen(2);
+1662  10                                                                      y-=64;
+C51 COMPILER V8.02   GAME                                                                  11/16/2013 22:31:46 PAGE 28  
 
-1663  11                                                                      y+=64;
-1664  11                                                              }
-1665  10                                                              y-=20+7*i;
-1666  10                                                              x-=6;
-1667  10                                                              lcd_write_data(press_start[y+x*6+i*12]);
-1668  10                                                              }
-1669   9                                                      }       
-1670   8                                              }
-1671   7                                      }
-1672   6                              }
-1673   5                              }       
-1674   4                      }
-1675   3              }
-1676   2              }
-1677   1      }
-1678          
-1679          //initial fiunction
-1680          //init the game
-1681          void game_init(){
-1682   1              lcd_init();
-1683   1              first_page();
-1684   1      }
+1663  10                                                                      flag=1;
+1664  10                                                              }
+1665   9                                                              if(y<64){
+1666  10                                                              lcd_write_command(0xb8|x);
+1667  10                                                              lcd_write_command(0x40|y);
+1668  10                                                              if(flag){
+1669  11                                                                      y+=64;
+1670  11                                                              }
+1671  10                                                              y-=20+7*i;
+1672  10                                                              x-=6;
+1673  10                                                              lcd_write_data(press_start[y+x*6+i*12]);
+1674  10                                                              }
+1675   9                                                      }       
+1676   8                                              }
+1677   7                                      }
+1678   6                              }
+1679   5                              }       
+1680   4                      }
+1681   3              }
+1682   2              }
+1683   1      }
+1684          
+1685          //initial fiunction
+1686          //init the game
+1687          void game_init(){
+1688   1              lcd_init();
+1689   1              first_page();
+1690   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   6692    ----
+   CODE SIZE        =   6704    ----
    CONSTANT SIZE    =   2186    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -1486,6 +1486,9 @@ void refresh_screen(){
 			}else if(number_frame==30){
 				//show "DIE!"
 				first_page();
+				prop_exist=0;
+				longer=0;
+				longer_time=0;
 				for(i=0;i<4;i++){
 					for(y=0;y<12;y++){
 						for(x=0;x<3;x++){
@@ -1585,6 +1588,9 @@ void refresh_screen(){
 		//win status
 		//"WIN!"
 		LS1=win_music;
+		prop_exist=0;
+		longer=0;
+		longer_time=0;
 		if(frame_finish==0){
 			frame_finish=1;
 			number_frame=0;
