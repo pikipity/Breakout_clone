@@ -18,6 +18,27 @@
 3. 胜利道具（道具图案是 “W” 字样）：生效后，此关胜利。
 4. 死亡道具（道具图案是 “D” 字样）：生效后，直接失去一条命。
 
+## 文件说明
+
++ circuit 文件夹：Proteus 仿真电路
++ material 文件夹：部分使用到的素材
++ program 文件夹：C 8051 的程序
+
+  - sounder_main.c：控制 sounder 的单片机使用的程序
+  - main.c：主单片机（控制显示器和按键的单片机）的程序
+  - lcd12864.h 和 lcd12864.c：为了实现对 AMPIRE12864 的控制编写的函数，包括：
+  
+    1. ```lcd_write_command ( command )```：向 AMPIRE12864 中写入一个命令 command。
+    2. ```lcd_write_data ( data )```：向 AMPIRE12864 中写入一个8位的数据 data。
+    3. ```lcd_read_data ( )```：从 AMPIRE12864 中读取一个8位的数据。
+    4. ```lcd_init ( )```：初始化 AMPIRE12864。
+    5. ```first_page ( )```：清空整个屏幕。
+    6. ```choose_screen ( n )```：选择屏幕。（同时选择两个屏幕：n=0；左屏幕：n=1；右屏幕：n=2）
+    7. ```set_dot ( x,y )```：点亮坐标为 (x,y) 的像素点。（左上角的像素点为 (0,0)，x 坐标向右延伸，y 坐标向下延伸）
+    8. ```clear_dot ( x,y )```：清除坐标为 (x,y) 的像素点。（坐标系同上）
+    9. ```read_dot ( x,y )```：读取坐标为 (x,y) 的像素点的状态。
+  - game.h 和 game.c：用于刷新屏幕和计算游戏状态的函数。
+
 ## 电路图
 
 ![电路图](https://lh6.googleusercontent.com/-ldlHxz4m384/UocrUK_Sy4I/AAAAAAAABV0/RSKXVdsHxJc/s720/circuit.jpg)
