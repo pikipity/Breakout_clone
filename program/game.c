@@ -1241,7 +1241,7 @@ void refresh_screen(){
 		}
 	}else if(game_status==8){
 		//clear area
-		if(TL0<60){
+		if((255-TL0)<85){
 			x=0;
 		}else{
 			x=2;
