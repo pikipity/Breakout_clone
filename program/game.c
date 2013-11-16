@@ -1241,12 +1241,12 @@ void refresh_screen(){
 		}
 	}else if(game_status==8){
 		//clear area
-		if((255-TL0)<85){
-			x=0;
-		}else{
-			x=2;
-		}
 		if(frame_begin==0){
+			if((255-TL0)<85){
+				x=0;
+			}else{
+				x=2;
+			}
 			frame_begin=1;
 			number_frame=0;
 		}else{
