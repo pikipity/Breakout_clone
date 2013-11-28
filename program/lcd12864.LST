@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   LCD12864                                                              11/16/2013 22:31:46 PAGE 1   
+C51 COMPILER V8.02   LCD12864                                                              11/28/2013 12:12:49 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE LCD12864
@@ -62,7 +62,7 @@ line level    source
   53   1              RS=1;
   54   1              RW=0;
   55   1              EN=0;
-C51 COMPILER V8.02   LCD12864                                                              11/16/2013 22:31:46 PAGE 2   
+C51 COMPILER V8.02   LCD12864                                                              11/28/2013 12:12:49 PAGE 2   
 
   56   1              lcddata=rdata;
   57   1              EN=1;
@@ -126,7 +126,7 @@ line level    source
  115   2              rdata=rdata|(0x01<<ybit);
  116   2              //write data
  117   2              lcd_write_command(0xb8|ybyte);
-C51 COMPILER V8.02   LCD12864                                                              11/16/2013 22:31:46 PAGE 3   
+C51 COMPILER V8.02   LCD12864                                                              11/28/2013 12:12:49 PAGE 3   
 
  118   2              lcd_write_command(0x40|xbit);
  119   2              lcd_write_data(rdata);

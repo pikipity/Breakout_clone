@@ -779,9 +779,78 @@ void move_ball(){
 				if((ball_sit[1]-1)!=0){
 					clear_dot(ball_sit[0],ball_sit[1]-2);
 					clear_dot(ball_sit[0]+1,ball_sit[1]-2);
+					//
+					clear_dot(ball_sit[0]-1,ball_sit[1]-2);
+					clear_dot(ball_sit[0]-2,ball_sit[1]-2);
+					clear_dot(ball_sit[0]-3,ball_sit[1]-2);
+					clear_dot(ball_sit[0]-4,ball_sit[1]-2);
+					clear_dot(ball_sit[0]-5,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+2,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+3,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+4,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+5,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+6,ball_sit[1]-2);
+					//
 					if((ball_sit[1]-2)!=0){
 						clear_dot(ball_sit[0],ball_sit[1]-3);
 						clear_dot(ball_sit[0]+1,ball_sit[1]-3);
+						//
+						clear_dot(ball_sit[0]-1,ball_sit[1]-3);
+						clear_dot(ball_sit[0]-2,ball_sit[1]-3);
+						clear_dot(ball_sit[0]-3,ball_sit[1]-3);
+						clear_dot(ball_sit[0]-4,ball_sit[1]-3);
+						clear_dot(ball_sit[0]-5,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+2,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+3,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+4,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+5,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+6,ball_sit[1]-3);
+						
+							if((ball_sit[1]-3)!=0){
+								clear_dot(ball_sit[0],ball_sit[1]-4);
+								clear_dot(ball_sit[0]+1,ball_sit[1]-4);
+								clear_dot(ball_sit[0]-1,ball_sit[1]-4);
+								clear_dot(ball_sit[0]-2,ball_sit[1]-4);
+								clear_dot(ball_sit[0]-3,ball_sit[1]-4);
+								clear_dot(ball_sit[0]-4,ball_sit[1]-4);
+								clear_dot(ball_sit[0]-5,ball_sit[1]-4);
+								clear_dot(ball_sit[0]+2,ball_sit[1]-4);
+								clear_dot(ball_sit[0]+3,ball_sit[1]-4);
+								clear_dot(ball_sit[0]+4,ball_sit[1]-4);
+								clear_dot(ball_sit[0]+5,ball_sit[1]-4);
+								clear_dot(ball_sit[0]+6,ball_sit[1]-4);
+							
+								if((ball_sit[1]-4)!=0){
+									clear_dot(ball_sit[0],ball_sit[1]-5);
+									clear_dot(ball_sit[0]+1,ball_sit[1]-5);
+									clear_dot(ball_sit[0]-1,ball_sit[1]-5);
+									clear_dot(ball_sit[0]-2,ball_sit[1]-5);
+									clear_dot(ball_sit[0]-3,ball_sit[1]-5);
+									clear_dot(ball_sit[0]-4,ball_sit[1]-5);
+									clear_dot(ball_sit[0]-5,ball_sit[1]-5);
+									clear_dot(ball_sit[0]+2,ball_sit[1]-5);
+									clear_dot(ball_sit[0]+3,ball_sit[1]-5);
+									clear_dot(ball_sit[0]+4,ball_sit[1]-5);
+									clear_dot(ball_sit[0]+5,ball_sit[1]-5);
+									clear_dot(ball_sit[0]+6,ball_sit[1]-5);
+						
+									if((ball_sit[1]-5)!=0){
+										clear_dot(ball_sit[0],ball_sit[1]-6);
+										clear_dot(ball_sit[0]+1,ball_sit[1]-6);
+										clear_dot(ball_sit[0]-1,ball_sit[1]-6);
+										clear_dot(ball_sit[0]-2,ball_sit[1]-6);
+										clear_dot(ball_sit[0]-3,ball_sit[1]-6);
+										clear_dot(ball_sit[0]-4,ball_sit[1]-6);
+										clear_dot(ball_sit[0]-5,ball_sit[1]-6);
+										clear_dot(ball_sit[0]+2,ball_sit[1]-6);
+										clear_dot(ball_sit[0]+3,ball_sit[1]-6);
+										clear_dot(ball_sit[0]+4,ball_sit[1]-6);
+										clear_dot(ball_sit[0]+5,ball_sit[1]-6);
+										clear_dot(ball_sit[0]+6,ball_sit[1]-6);
+									}
+								}
+							}
+					//
 					}
 				}
 				ball_direction_y=~ball_direction_y;
@@ -823,8 +892,69 @@ void move_ball(){
 					if(ball_sit[1]+1!=bar_sit[1]){
 						clear_dot(ball_sit[0],ball_sit[1]+1);
 						clear_dot(ball_sit[0]+1,ball_sit[1]+1);
+						//
+						clear_dot(ball_sit[0]-1,ball_sit[1]+1);
+						clear_dot(ball_sit[0]-2,ball_sit[1]+1);
+						clear_dot(ball_sit[0]-3,ball_sit[1]+1);
+						clear_dot(ball_sit[0]-4,ball_sit[1]+1);
+						clear_dot(ball_sit[0]-5,ball_sit[1]+1);
+						clear_dot(ball_sit[0]+2,ball_sit[1]+1);
+						clear_dot(ball_sit[0]+3,ball_sit[1]+1);
+						clear_dot(ball_sit[0]+4,ball_sit[1]+1);
+						clear_dot(ball_sit[0]+5,ball_sit[1]+1);
+						clear_dot(ball_sit[0]+6,ball_sit[1]+1);
+						//
 						clear_dot(ball_sit[0],ball_sit[1]+2);
 						clear_dot(ball_sit[0]+1,ball_sit[1]+2);
+						//
+						clear_dot(ball_sit[0]-1,ball_sit[1]+2);
+						clear_dot(ball_sit[0]-2,ball_sit[1]+2);
+						clear_dot(ball_sit[0]-3,ball_sit[1]+2);
+						clear_dot(ball_sit[0]-4,ball_sit[1]+2);
+						clear_dot(ball_sit[0]-5,ball_sit[1]+2);
+						clear_dot(ball_sit[0]+2,ball_sit[1]+2);
+						clear_dot(ball_sit[0]+3,ball_sit[1]+2);
+						clear_dot(ball_sit[0]+4,ball_sit[1]+2);
+						clear_dot(ball_sit[0]+5,ball_sit[1]+2);
+						clear_dot(ball_sit[0]+6,ball_sit[1]+2);
+						//
+						clear_dot(ball_sit[0],ball_sit[1]+3);
+						clear_dot(ball_sit[0]+1,ball_sit[1]+3);
+						clear_dot(ball_sit[0]-1,ball_sit[1]+3);
+						clear_dot(ball_sit[0]-2,ball_sit[1]+3);
+						clear_dot(ball_sit[0]-3,ball_sit[1]+3);
+						clear_dot(ball_sit[0]-4,ball_sit[1]+3);
+						clear_dot(ball_sit[0]-5,ball_sit[1]+3);
+						clear_dot(ball_sit[0]+2,ball_sit[1]+3);
+						clear_dot(ball_sit[0]+3,ball_sit[1]+3);
+						clear_dot(ball_sit[0]+4,ball_sit[1]+3);
+						clear_dot(ball_sit[0]+5,ball_sit[1]+3);
+						clear_dot(ball_sit[0]+6,ball_sit[1]+3);
+						clear_dot(ball_sit[0],ball_sit[1]+4);
+						clear_dot(ball_sit[0]+1,ball_sit[1]+4);
+						clear_dot(ball_sit[0]-1,ball_sit[1]+4);
+						clear_dot(ball_sit[0]-2,ball_sit[1]+4);
+						clear_dot(ball_sit[0]-3,ball_sit[1]+4);
+						clear_dot(ball_sit[0]-4,ball_sit[1]+4);
+						clear_dot(ball_sit[0]-5,ball_sit[1]+4);
+						clear_dot(ball_sit[0]+2,ball_sit[1]+4);
+						clear_dot(ball_sit[0]+3,ball_sit[1]+4);
+						clear_dot(ball_sit[0]+4,ball_sit[1]+4);
+						clear_dot(ball_sit[0]+5,ball_sit[1]+4);
+						clear_dot(ball_sit[0]+6,ball_sit[1]+4);
+						clear_dot(ball_sit[0],ball_sit[1]+5);
+						clear_dot(ball_sit[0]+1,ball_sit[1]+5);
+						clear_dot(ball_sit[0]-1,ball_sit[1]+5);
+						clear_dot(ball_sit[0]-2,ball_sit[1]+5);
+						clear_dot(ball_sit[0]-3,ball_sit[1]+5);
+						clear_dot(ball_sit[0]-4,ball_sit[1]+5);
+						clear_dot(ball_sit[0]-5,ball_sit[1]+5);
+						clear_dot(ball_sit[0]+2,ball_sit[1]+5);
+						clear_dot(ball_sit[0]+3,ball_sit[1]+5);
+						clear_dot(ball_sit[0]+4,ball_sit[1]+5);
+						clear_dot(ball_sit[0]+5,ball_sit[1]+5);
+						clear_dot(ball_sit[0]+6,ball_sit[1]+5);
+						//
 					}else{
 						LS1=do_2;
 						ball_speed[0]=bar_speed;
@@ -874,6 +1004,85 @@ void move_ball(){
 				clear_dot(ball_sit[0]+2,ball_sit[1]-1);
 				clear_dot(ball_sit[0]+3,ball_sit[1]);
 				clear_dot(ball_sit[0]+3,ball_sit[1]-1);
+				//
+				clear_dot(ball_sit[0]+4,ball_sit[1]);
+				clear_dot(ball_sit[0]+4,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+5,ball_sit[1]);
+				clear_dot(ball_sit[0]+5,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+6,ball_sit[1]);
+				clear_dot(ball_sit[0]+6,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+7,ball_sit[1]);
+				clear_dot(ball_sit[0]+7,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+8,ball_sit[1]);
+				clear_dot(ball_sit[0]+8,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+9,ball_sit[1]);
+				clear_dot(ball_sit[0]+9,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+10,ball_sit[1]);
+				clear_dot(ball_sit[0]+10,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+11,ball_sit[1]);
+				clear_dot(ball_sit[0]+11,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+12,ball_sit[1]);
+				clear_dot(ball_sit[0]+12,ball_sit[1]-1);
+				clear_dot(ball_sit[0]+13,ball_sit[1]);
+				clear_dot(ball_sit[0]+13,ball_sit[1]-1);
+				if(ball_sit[1]-1!=0){
+					clear_dot(ball_sit[0]+2,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+3,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+4,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+5,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+6,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+7,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+8,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+9,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+10,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+11,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+12,ball_sit[1]-2);
+					clear_dot(ball_sit[0]+13,ball_sit[1]-2);
+					if(ball_sit[1]-2!=0){
+						clear_dot(ball_sit[0]+2,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+3,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+4,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+5,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+6,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+7,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+8,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+9,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+10,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+11,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+12,ball_sit[1]-3);
+						clear_dot(ball_sit[0]+13,ball_sit[1]-3);
+						if(ball_sit[1]-3!=0){
+							clear_dot(ball_sit[0]+2,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+3,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+4,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+5,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+6,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+7,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+8,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+9,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+10,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+11,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+12,ball_sit[1]-4);
+							clear_dot(ball_sit[0]+13,ball_sit[1]-4);
+							if(ball_sit[1]-4!=0){
+								clear_dot(ball_sit[0]+2,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+3,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+4,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+5,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+6,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+7,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+8,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+9,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+10,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+11,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+12,ball_sit[1]-5);
+								clear_dot(ball_sit[0]+13,ball_sit[1]-5);
+
+							}
+						}
+					}
+				}
+				//
 				ball_direction_x=~ball_direction_x;
 			}
 		}
@@ -912,10 +1121,195 @@ void move_ball(){
 				if(ball_sit[0]!=0){
 					clear_dot(ball_sit[0]-1,ball_sit[1]);
 					clear_dot(ball_sit[0]-1,ball_sit[1]-1);
+					//
 					if((ball_sit[0]-1)!=0){
 						clear_dot(ball_sit[0]-2,ball_sit[1]);
 						clear_dot(ball_sit[0]-2,ball_sit[1]-1);
+						if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-2,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-2,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-2,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-2,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-2)!=0){
+						clear_dot(ball_sit[0]-3,ball_sit[1]);
+						clear_dot(ball_sit[0]-3,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-3,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-3,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-3,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-3,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-3)!=0){
+						clear_dot(ball_sit[0]-4,ball_sit[1]);
+						clear_dot(ball_sit[0]-4,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-4,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-4,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-4,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-4,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-4)!=0){
+						clear_dot(ball_sit[0]-5,ball_sit[1]);
+						clear_dot(ball_sit[0]-5,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-5,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-5,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-5,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-5,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-5)!=0){
+						clear_dot(ball_sit[0]-6,ball_sit[1]);
+						clear_dot(ball_sit[0]-6,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-6,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-6,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-6,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-6,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-6)!=0){
+						clear_dot(ball_sit[0]-7,ball_sit[1]);
+						clear_dot(ball_sit[0]-7,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-7,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-7,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-7,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-7,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-7)!=0){
+						clear_dot(ball_sit[0]-8,ball_sit[1]);
+						clear_dot(ball_sit[0]-8,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-8,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-8,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-8,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-8,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-8)!=0){
+						clear_dot(ball_sit[0]-9,ball_sit[1]);
+						clear_dot(ball_sit[0]-9,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-9,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-9,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-9,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-9,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-9)!=0){
+						clear_dot(ball_sit[0]-10,ball_sit[1]);
+						clear_dot(ball_sit[0]-10,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-10,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-10,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-10,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-10,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-10)!=0){
+						clear_dot(ball_sit[0]-11,ball_sit[1]);
+						clear_dot(ball_sit[0]-11,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-11,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-11,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-11,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-11,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
+					if((ball_sit[0]-11)!=0){
+						clear_dot(ball_sit[0]-12,ball_sit[1]);
+						clear_dot(ball_sit[0]-12,ball_sit[1]-1);
+							if(ball_sit[1]-1!=0){
+							clear_dot(ball_sit[0]-12,ball_sit[1]-2);
+							if(ball_sit[1]-2!=0){
+								clear_dot(ball_sit[0]-12,ball_sit[1]-3);
+								if(ball_sit[1]-3!=0){
+									clear_dot(ball_sit[0]-12,ball_sit[1]-4);
+									if(ball_sit[1]-4!=0){
+										clear_dot(ball_sit[0]-12,ball_sit[1]-5);
+
+									}
+								}
+							}
+						}
 					}
+					}
+					}
+					}
+					}
+					}
+					}
+					}
+					}
+					}
+					}
+					//
 				}
 				ball_direction_x=~ball_direction_x;
 			}

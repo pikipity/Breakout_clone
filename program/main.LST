@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   MAIN                                                                  11/16/2013 22:31:46 PAGE 1   
+C51 COMPILER V8.02   MAIN                                                                  11/28/2013 12:12:49 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   53   1      }
   54          
   55          void main(){
-C51 COMPILER V8.02   MAIN                                                                  11/16/2013 22:31:46 PAGE 2   
+C51 COMPILER V8.02   MAIN                                                                  11/28/2013 12:12:49 PAGE 2   
 
   56   1              //init timer1 and two external interrupts
   57   1              hardware_init();
