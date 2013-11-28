@@ -7,10 +7,12 @@
 //refesh screen count
 #define screen_count 3
 
+sbit switchS=P3^7;
+
 //count for timer1
 unsigned char count=0;
 
-extern bit bar_direction;
+extern unsigned char bar_direction;
 
 //Use timer1 to count time
 //timer1 initial
@@ -30,11 +32,13 @@ void init_timer0(){
 	TR0=0;
 }
 
+
 //External int init
 void init_external(){
 	IT0=1;
 	IT1=1;
 }
+
 
 //int init
 void init_int(){
@@ -61,6 +65,10 @@ void main(){
 	while(1){
 		//every 0.03s refresh screen
 		if(count>=screen_count){
+			if(switchS==1){
+				//check button
+				handle_button();
+			}
 			//refresh screen
 			refresh_screen();
 			//clear count
@@ -75,10 +83,15 @@ void int_timer1() interrupt 3{
 	TL1=TL1value;
 }
 
+
 void int_external0() interrupt 0{
-	bar_direction=0;
+	if(switchS==0){
+		bar_direction=0;
+	}
 }
 
 void int_external1() interrupt 2{
-	bar_direction=1;
+	if(switchS==0){
+		bar_direction=1;
+	}
 }

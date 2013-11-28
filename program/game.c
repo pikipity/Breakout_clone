@@ -651,10 +651,22 @@ unsigned char bar_speed;
 unsigned char o_bar_len;
 unsigned char bar_len;
 //bar direction
-bit o_bar_direction=1;
-bit bar_direction;//0:left, 1:right
+unsigned char code o_bar_direction=1;
+unsigned char bar_direction;//0:left, 1:right
 
 //functions for bar
+//button
+void handle_button(){
+	if(leftB==0){
+		bar_direction=0;
+	}
+	if(rightB==0){
+		bar_direction=1;
+	}
+	if(leftB==1 && rightB==1){
+		bar_direction=2;
+	}
+}
 //init bar
 void init_bar(){
 	unsigned char i;
@@ -676,7 +688,7 @@ void init_bar(){
 //draw bar
 void draw_bar(){
 	unsigned char i;
-	if(bar_direction){
+	if(bar_direction==1){
 		//go right
 		if(bar_sit[0]<=128-bar_len-bar_speed && bar_len+bar_speed<=128){
 			for(i=1;i<bar_speed+1;i++){
@@ -688,7 +700,7 @@ void draw_bar(){
 			//recalculate bar location
 			bar_sit[0]+=bar_speed;
 		}
-	}else{
+	}else if(bar_direction==0){
 		//go left
 		if(bar_sit[0]>=0+bar_speed){
 			for(i=1;i<bar_speed+1;i++){

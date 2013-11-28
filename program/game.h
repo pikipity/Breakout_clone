@@ -12,8 +12,11 @@
 #define win_music 0x07;
 
 sbit start=P3^4;
+sbit leftB=P3^2;
+sbit rightB=P3^3;
 
 extern void game_init(void);
 extern void refresh_screen(void);
+extern void handle_button(void);
 
 #endif

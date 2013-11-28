@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   MAIN                                                                  11/28/2013 12:12:49 PAGE 1   
+C51 COMPILER V8.02   MAIN                                                                  11/28/2013 13:36:50 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE MAIN
@@ -16,87 +16,100 @@ line level    source
    7          //refesh screen count
    8          #define screen_count 3
    9          
-  10          //count for timer1
-  11          unsigned char count=0;
-  12          
-  13          extern bit bar_direction;
+  10          sbit switchS=P3^7;
+  11          
+  12          //count for timer1
+  13          unsigned char count=0;
   14          
-  15          //Use timer1 to count time
-  16          //timer1 initial
-  17          //timer -> 0.01s
-  18          void init_timer1(){
-  19   1              TMOD=TMOD|0x10;
-  20   1              TH1=TH1value;
-  21   1              TL1=TL1value;
-  22   1              TR1=1;
-  23   1      }
-  24          
-  25          //timer0 initial
-  26          void init_timer0(){
-  27   1              TMOD=TMOD|0x02;
-  28   1              TL0=256-119;
-  29   1              TH0=256-119;
-  30   1              TR0=0;
-  31   1      }
-  32          
-  33          //External int init
-  34          void init_external(){
-  35   1              IT0=1;
-  36   1              IT1=1;
-  37   1      }
-  38          
-  39          //int init
-  40          void init_int(){
-  41   1              EA=1;
-  42   1              ET1=1;
-  43   1              EX0=1;
-  44   1              EX1=1;
-  45   1      }
-  46          
-  47          void hardware_init(){
-  48   1              init_timer1();
-  49   1              init_timer0();
-  50   1              init_external();
-  51   1              init_int();
-  52   1              LS1=0xFF;
-  53   1      }
-  54          
-  55          void main(){
-C51 COMPILER V8.02   MAIN                                                                  11/28/2013 12:12:49 PAGE 2   
+  15          extern unsigned char bar_direction;
+  16          
+  17          //Use timer1 to count time
+  18          //timer1 initial
+  19          //timer -> 0.01s
+  20          void init_timer1(){
+  21   1              TMOD=TMOD|0x10;
+  22   1              TH1=TH1value;
+  23   1              TL1=TL1value;
+  24   1              TR1=1;
+  25   1      }
+  26          
+  27          //timer0 initial
+  28          void init_timer0(){
+  29   1              TMOD=TMOD|0x02;
+  30   1              TL0=256-119;
+  31   1              TH0=256-119;
+  32   1              TR0=0;
+  33   1      }
+  34          
+  35          
+  36          //External int init
+  37          void init_external(){
+  38   1              IT0=1;
+  39   1              IT1=1;
+  40   1      }
+  41          
+  42          
+  43          //int init
+  44          void init_int(){
+  45   1              EA=1;
+  46   1              ET1=1;
+  47   1              EX0=1;
+  48   1              EX1=1;
+  49   1      }
+  50          
+  51          void hardware_init(){
+  52   1              init_timer1();
+  53   1              init_timer0();
+  54   1              init_external();
+  55   1              init_int();
+C51 COMPILER V8.02   MAIN                                                                  11/28/2013 13:36:50 PAGE 2   
 
-  56   1              //init timer1 and two external interrupts
-  57   1              hardware_init();
-  58   1              //init screen
-  59   1              game_init();
-  60   1              //begin game
-  61   1              while(1){
-  62   2                      //every 0.03s refresh screen
-  63   2                      if(count>=screen_count){
-  64   3                              //refresh screen
-  65   3                              refresh_screen();
-  66   3                              //clear count
-  67   3                              count=0;
-  68   3                      }
-  69   2              }
-  70   1      }
-  71          
-  72          void int_timer1() interrupt 3{
-  73   1              count++;
-  74   1              TH1=TH1value;
-  75   1              TL1=TL1value;
-  76   1      }
-  77          
-  78          void int_external0() interrupt 0{
-  79   1              bar_direction=0;
-  80   1      }
-  81          
-  82          void int_external1() interrupt 2{
-  83   1              bar_direction=1;
+  56   1              LS1=0xFF;
+  57   1      }
+  58          
+  59          void main(){
+  60   1              //init timer1 and two external interrupts
+  61   1              hardware_init();
+  62   1              //init screen
+  63   1              game_init();
+  64   1              //begin game
+  65   1              while(1){
+  66   2                      //every 0.03s refresh screen
+  67   2                      if(count>=screen_count){
+  68   3                              if(switchS==1){
+  69   4                                      //check button
+  70   4                                      handle_button();
+  71   4                              }
+  72   3                              //refresh screen
+  73   3                              refresh_screen();
+  74   3                              //clear count
+  75   3                              count=0;
+  76   3                      }
+  77   2              }
+  78   1      }
+  79          
+  80          void int_timer1() interrupt 3{
+  81   1              count++;
+  82   1              TH1=TH1value;
+  83   1              TL1=TL1value;
   84   1      }
+  85          
+  86          
+  87          void int_external0() interrupt 0{
+  88   1              if(switchS==0){
+  89   2                      bar_direction=0;
+  90   2              }
+  91   1      }
+  92          
+  93          void int_external1() interrupt 2{
+  94   1              if(switchS==0){
+  95   2                      bar_direction=1;
+  96   2              }
+  97   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     90    ----
+   CODE SIZE        =    104    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
