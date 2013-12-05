@@ -1,4 +1,4 @@
-C51 COMPILER V8.02   MAIN                                                                  11/28/2013 13:36:50 PAGE 1   
+C51 COMPILER V8.02   MAIN                                                                  12/05/2013 12:51:35 PAGE 1   
 
 
 C51 COMPILER V8.02, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   53   1              init_timer0();
   54   1              init_external();
   55   1              init_int();
-C51 COMPILER V8.02   MAIN                                                                  11/28/2013 13:36:50 PAGE 2   
+C51 COMPILER V8.02   MAIN                                                                  12/05/2013 12:51:35 PAGE 2   
 
   56   1              LS1=0xFF;
   57   1      }
@@ -76,7 +76,7 @@ line level    source
   65   1              while(1){
   66   2                      //every 0.03s refresh screen
   67   2                      if(count>=screen_count){
-  68   3                              if(switchS==1){
+  68   3                              if(switchS==0){
   69   4                                      //check button
   70   4                                      handle_button();
   71   4                              }
@@ -96,13 +96,13 @@ line level    source
   85          
   86          
   87          void int_external0() interrupt 0{
-  88   1              if(switchS==0){
+  88   1              if(switchS==1){
   89   2                      bar_direction=0;
   90   2              }
   91   1      }
   92          
   93          void int_external1() interrupt 2{
-  94   1              if(switchS==0){
+  94   1              if(switchS==1){
   95   2                      bar_direction=1;
   96   2              }
   97   1      }

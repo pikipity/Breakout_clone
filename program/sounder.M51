@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.00                                                        11/14/2013  11:34:51  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.00                                                        12/05/2013  12:43:24  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.00, INVOKED BY:
@@ -32,11 +32,11 @@ LINK MAP OF MODULE:  sounder (SOUNDER_MAIN)
             CODE    000EH     00AAH     UNIT         ?PR?MAIN?SOUNDER_MAIN
             CODE    00B8H     008CH     UNIT         ?C_C51STARTUP
             CODE    0144H     0044H     UNIT         ?CO?SOUNDER_MAIN
-            CODE    0188H     0032H     UNIT         ?PR?_SOUNDER_DO?SOUNDER_MAIN
-            CODE    01BAH     000CH     UNIT         ?PR?INIT_TIMER0?SOUNDER_MAIN
-            CODE    01C6H     000AH     UNIT         ?C_INITSEG
-            CODE    01D0H     0005H     UNIT         ?PR?INIT_INT?SOUNDER_MAIN
-            CODE    01D5H     0003H     UNIT         ?PR?INT_TIMER0?SOUNDER_MAIN
+            CODE    0188H     0040H     UNIT         ?PR?_SOUNDER_DO?SOUNDER_MAIN
+            CODE    01C8H     000CH     UNIT         ?PR?INIT_TIMER0?SOUNDER_MAIN
+            CODE    01D4H     000AH     UNIT         ?C_INITSEG
+            CODE    01DEH     0005H     UNIT         ?PR?INIT_INT?SOUNDER_MAIN
+            CODE    01E3H     0003H     UNIT         ?PR?INT_TIMER0?SOUNDER_MAIN
 
 
 
@@ -59,7 +59,7 @@ SEGMENT
   +--> ?PR?INIT_TIMER0?SOUNDER_MAIN
   +--> ?PR?INIT_INT?SOUNDER_MAIN
 
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/14/2013  11:34:51  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.00                                                      12/05/2013  12:43:24  PAGE 2
 
 
 ?PR?_SOUNDER_DO?SOUNDER_MAIN
@@ -75,11 +75,13 @@ SYMBOL TABLE OF MODULE:  sounder (SOUNDER_MAIN)
   -------         MODULE        SOUNDER_MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
-  C:01D5H         PUBLIC        int_timer0
+  C:01E3H         PUBLIC        int_timer0
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
   D:0008H         PUBLIC        sounder
+  B:00B0H.1       PUBLIC        finish
   B:00A8H.7       PUBLIC        EA
+  B:00B0H.0       PUBLIC        begin
   D:00A8H         PUBLIC        IE
   D:0009H         PUBLIC        sounder_time
   C:0188H         PUBLIC        _sounder_do
@@ -99,113 +101,120 @@ SYMBOL TABLE OF MODULE:  sounder (SOUNDER_MAIN)
   D:000AH         PUBLIC        music_num
   B:0088H.4       PUBLIC        TR0
   C:0178H         PUBLIC        run_music
-  C:01D0H         PUBLIC        init_int
+  C:01DEH         PUBLIC        init_int
   D:00C8H         PUBLIC        T2CON
   C:0179H         PUBLIC        do_1_music
   C:0003H         PUBLIC        hardware_init
   C:017BH         PUBLIC        do_2_music
-  C:01BAH         PUBLIC        init_timer0
+  C:01C8H         PUBLIC        init_timer0
   D:00D0H         PUBLIC        PSW
   -------         PROC          _SOUNDER_DO
   D:0007H         SYMBOL        music
-  C:0188H         LINE#         43
-  C:0188H         LINE#         44
-  C:0194H         LINE#         45
-  C:0197H         LINE#         46
-  C:0199H         LINE#         47
-  C:01A5H         LINE#         48
-  C:01AAH         LINE#         49
-  C:01ACH         LINE#         50
-  C:01ACH         LINE#         51
-  C:01B4H         LINE#         52
-  C:01B6H         LINE#         53
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/14/2013  11:34:51  PAGE 3
+  C:0188H         LINE#         49
+  C:0188H         LINE#         50
+  C:0194H         LINE#         51
+  C:0197H         LINE#         52
+  C:0199H         LINE#         53
+  C:01A5H         LINE#         54
+  C:01AAH         LINE#         55
+  C:01ACH         LINE#         56
+  C:01ACH         LINE#         57
+BL51 BANKED LINKER/LOCATER V6.00                                                      12/05/2013  12:43:24  PAGE 3
 
 
-  C:01B9H         LINE#         54
-  C:01B9H         LINE#         55
-  C:01B9H         LINE#         56
+  C:01B4H         LINE#         58
+  C:01B8H         LINE#         59
+  C:01BCH         LINE#         60
+  C:01BEH         LINE#         61
+  C:01C2H         LINE#         62
+  C:01C2H         LINE#         63
+  C:01C4H         LINE#         64
+  C:01C7H         LINE#         65
+  C:01C7H         LINE#         66
+  C:01C7H         LINE#         67
   -------         ENDPROC       _SOUNDER_DO
   -------         PROC          INIT_TIMER0
-  C:01BAH         LINE#         61
-  C:01BAH         LINE#         62
-  C:01BDH         LINE#         63
-  C:01C0H         LINE#         64
-  C:01C3H         LINE#         65
-  C:01C5H         LINE#         66
+  C:01C8H         LINE#         72
+  C:01C8H         LINE#         73
+  C:01CBH         LINE#         74
+  C:01CEH         LINE#         75
+  C:01D1H         LINE#         76
+  C:01D3H         LINE#         77
   -------         ENDPROC       INIT_TIMER0
   -------         PROC          INIT_INT
-  C:01D0H         LINE#         68
-  C:01D0H         LINE#         69
-  C:01D2H         LINE#         70
-  C:01D4H         LINE#         71
+  C:01DEH         LINE#         79
+  C:01DEH         LINE#         80
+  C:01E0H         LINE#         81
+  C:01E2H         LINE#         82
   -------         ENDPROC       INIT_INT
   -------         PROC          HARDWARE_INIT
-  C:0003H         LINE#         73
-  C:0003H         LINE#         74
-  C:0005H         LINE#         75
-  C:0008H         LINE#         76
+  C:0003H         LINE#         84
+  C:0003H         LINE#         85
+  C:0005H         LINE#         86
+  C:0008H         LINE#         87
   -------         ENDPROC       HARDWARE_INIT
   -------         PROC          MAIN
-  C:000EH         LINE#         79
-  C:000EH         LINE#         81
-  C:0011H         LINE#         82
-  C:0011H         LINE#         84
-  C:0015H         LINE#         85
-  C:0017H         LINE#         86
-  C:001AH         LINE#         87
-  C:001CH         LINE#         88
-  C:001EH         LINE#         89
-  C:0025H         LINE#         90
-  C:002EH         LINE#         91
-  C:0030H         LINE#         92
-  C:0037H         LINE#         96
-  C:0040H         LINE#         97
-  C:0042H         LINE#         98
-  C:0044H         LINE#         99
-  C:0044H         LINE#         100
-  C:0044H         LINE#         101
-  C:004BH         LINE#         102
-  C:0054H         LINE#         103
-  C:0056H         LINE#         104
-  C:0058H         LINE#         105
-  C:0058H         LINE#         106
-  C:0058H         LINE#         107
-  C:005FH         LINE#         108
-  C:0068H         LINE#         109
-  C:006AH         LINE#         110
-  C:006CH         LINE#         111
-  C:006CH         LINE#         112
-  C:006CH         LINE#         113
-  C:0073H         LINE#         114
-  C:007CH         LINE#         115
-BL51 BANKED LINKER/LOCATER V6.00                                                      11/14/2013  11:34:51  PAGE 4
+  C:000EH         LINE#         90
+  C:000EH         LINE#         92
+  C:0011H         LINE#         93
+  C:0011H         LINE#         95
+  C:0015H         LINE#         96
+  C:0017H         LINE#         97
+  C:001AH         LINE#         98
+  C:001CH         LINE#         99
+  C:001EH         LINE#         100
+  C:0025H         LINE#         101
+  C:002EH         LINE#         102
+  C:0030H         LINE#         103
+  C:0037H         LINE#         107
+  C:0040H         LINE#         108
+  C:0042H         LINE#         109
+  C:0044H         LINE#         110
+  C:0044H         LINE#         111
+  C:0044H         LINE#         112
+  C:004BH         LINE#         113
+  C:0054H         LINE#         114
+  C:0056H         LINE#         115
+  C:0058H         LINE#         116
+  C:0058H         LINE#         117
+  C:0058H         LINE#         118
+  C:005FH         LINE#         119
+BL51 BANKED LINKER/LOCATER V6.00                                                      12/05/2013  12:43:24  PAGE 4
 
 
-  C:007EH         LINE#         116
-  C:0080H         LINE#         117
-  C:0080H         LINE#         118
-  C:0080H         LINE#         119
-  C:0087H         LINE#         120
-  C:0090H         LINE#         121
-  C:0092H         LINE#         122
-  C:0095H         LINE#         123
-  C:0098H         LINE#         124
-  C:0098H         LINE#         125
-  C:00A4H         LINE#         126
-  C:00ADH         LINE#         127
-  C:00AFH         LINE#         128
-  C:00B2H         LINE#         129
-  C:00B5H         LINE#         130
-  C:00B5H         LINE#         131
-  C:00B5H         LINE#         132
+  C:0068H         LINE#         120
+  C:0068H         LINE#         121
+  C:0068H         LINE#         122
+  C:006AH         LINE#         123
+  C:006AH         LINE#         124
+  C:006AH         LINE#         125
+  C:0071H         LINE#         126
+  C:007AH         LINE#         127
+  C:007CH         LINE#         128
+  C:007EH         LINE#         129
+  C:0080H         LINE#         130
+  C:0080H         LINE#         131
+  C:0080H         LINE#         132
+  C:0087H         LINE#         133
+  C:0090H         LINE#         134
+  C:0092H         LINE#         135
+  C:0095H         LINE#         136
+  C:0098H         LINE#         137
+  C:0098H         LINE#         138
+  C:00A4H         LINE#         139
+  C:00ADH         LINE#         140
+  C:00AFH         LINE#         141
+  C:00B2H         LINE#         142
+  C:00B5H         LINE#         143
+  C:00B5H         LINE#         144
+  C:00B5H         LINE#         145
   -------         ENDPROC       MAIN
   -------         PROC          INT_TIMER0
-  C:01D5H         LINE#         135
-  C:01D5H         LINE#         136
-  C:01D7H         LINE#         137
+  C:01E3H         LINE#         148
+  C:01E3H         LINE#         149
+  C:01E5H         LINE#         150
   -------         ENDPROC       INT_TIMER0
   -------         ENDMOD        SOUNDER_MAIN
 
-Program Size: data=12.0 xdata=0 code=472
+Program Size: data=12.0 xdata=0 code=486
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -14,6 +14,8 @@
 sbit start=P3^4;
 sbit leftB=P3^2;
 sbit rightB=P3^3;
+sbit begin_bit=P3^6;
+sbit finish_bit=P3^5;
 
 extern void game_init(void);
 extern void refresh_screen(void);

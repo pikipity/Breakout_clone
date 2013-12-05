@@ -13,6 +13,8 @@ bit frame_finish=0;
 bit frame_begin=0;
 unsigned char level=1;//total 3 level
 
+bit do_doing=0;
+
 //win character
 unsigned char code win[]={
 	0x04,0xFC,0xFC,0x04,0x00,0x00,0x00,0x00,  // -W-
@@ -788,6 +790,7 @@ void move_ball(){
 				prop_exist=0;
 			}else{
 				LS1=do_1;
+				do_doing=1;
 				if((ball_sit[1]-1)!=0){
 					clear_dot(ball_sit[0],ball_sit[1]-2);
 					clear_dot(ball_sit[0]+1,ball_sit[1]-2);
@@ -901,6 +904,7 @@ void move_ball(){
 					prop_exist=0;
 				}else{
 					LS1=do_1;
+					do_doing=1;
 					if(ball_sit[1]+1!=bar_sit[1]){
 						clear_dot(ball_sit[0],ball_sit[1]+1);
 						clear_dot(ball_sit[0]+1,ball_sit[1]+1);
@@ -969,6 +973,7 @@ void move_ball(){
 						//
 					}else{
 						LS1=do_2;
+						do_doing=1;
 						ball_speed[0]=bar_speed;
 						ball_direction_x=bar_direction;
 					}
@@ -1012,6 +1017,7 @@ void move_ball(){
 				prop_exist=0;
 			}else{
 				LS1=do_1;
+				do_doing=1;
 				clear_dot(ball_sit[0]+2,ball_sit[1]);
 				clear_dot(ball_sit[0]+2,ball_sit[1]-1);
 				clear_dot(ball_sit[0]+3,ball_sit[1]);
@@ -1130,6 +1136,7 @@ void move_ball(){
 				prop_exist=0;
 			}else{
 				LS1=do_1;
+				do_doing=1;
 				if(ball_sit[0]!=0){
 					clear_dot(ball_sit[0]-1,ball_sit[1]);
 					clear_dot(ball_sit[0]-1,ball_sit[1]-1);
@@ -1430,6 +1437,9 @@ void refresh_screen(){
 				//main program for show title
 				//show BREAKOUT
 				if(number_frame<80){
+					if(number_frame==0){
+						while(begin_bit==0);
+					}
 					for(i=number_frame/10;i<number_frame/10+1;i++){
 						for(y=0;y<12;y++){
 							for(x=0;x<3;x++){
@@ -1576,6 +1586,9 @@ void refresh_screen(){
 		}
 		max_number_frame=30;
 		if(number_frame<max_number_frame){
+			if(number_frame==0){
+				while(begin_bit==0);
+			}
 			if(frame_finish==0){
 				show_level(level);
 				frame_finish=1;
@@ -1867,6 +1880,10 @@ void refresh_screen(){
 	check_block();
 	//draw bar
 	if(game_status==1){
+		if(do_doing){
+			while(finish_bit==0);
+			do_doing=0;
+		}
 		//music
 		LS1=run_music;
 		//continuous status
@@ -1885,6 +1902,9 @@ void refresh_screen(){
 				number_frame=0;
 			}
 			if(number_frame<30){
+				if(number_frame==0){
+					while(begin_bit==0);
+				}
 				if(frame_finish==0){
 					show_life(life);
 					frame_finish=1;
@@ -1979,6 +1999,9 @@ void refresh_screen(){
 			max_number_frame=30;
 			if(number_frame<max_number_frame){
 				if(frame_finish==0){
+					number_frame=0;
+				}
+				if(frame_finish==0){
 					show_life(life);
 					frame_finish=1;
 				}
@@ -1998,6 +2021,9 @@ void refresh_screen(){
 		longer=0;
 		longer_time=0;
 		if(frame_finish==0){
+			if(number_frame==0){
+				while(begin_bit==0);
+			}
 			frame_finish=1;
 			number_frame=0;
 			first_page();

@@ -65,7 +65,7 @@ void main(){
 	while(1){
 		//every 0.03s refresh screen
 		if(count>=screen_count){
-			if(switchS==1){
+			if(switchS==0){
 				//check button
 				handle_button();
 			}
@@ -85,13 +85,13 @@ void int_timer1() interrupt 3{
 
 
 void int_external0() interrupt 0{
-	if(switchS==0){
+	if(switchS==1){
 		bar_direction=0;
 	}
 }
 
 void int_external1() interrupt 2{
-	if(switchS==0){
+	if(switchS==1){
 		bar_direction=1;
 	}
 }

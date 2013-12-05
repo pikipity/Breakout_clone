@@ -18,6 +18,12 @@
 #define max_sounder_time 190
 
 sbit LS1=P3^7;
+sbit begin=P3^0;
+sbit finish=P3^1;
+
+#define begin_music begin=1;finish=0;
+#define continuous begin=0;finish=0;
+#define finish_music finish=1;
 
 //count for timer0
 unsigned char sounder=0;
@@ -49,6 +55,11 @@ void sounder_do(unsigned char music){
 				LS1=~LS1;
 			}
 		}else if(sounder_time>=max_sounder_time){
+			if(music_num==0){
+				begin_music
+			}else{
+				continuous
+			}
 			music_num++;
 			sounder_time=0;
 		}
@@ -107,12 +118,14 @@ void main(){
 		}else if(reciver==do_1){
 			if(do_1_music[music_num]==0){
 				music_num=0;
+				finish_music
 			}else{
 				sounder_do(do_1_music[music_num]);
 			}
 		}else if(reciver==do_2){
 			if(do_2_music[music_num]==0){
 				music_num=0;
+				finish_music
 			}else{
 				sounder_do(do_2_music[music_num]);
 			}
