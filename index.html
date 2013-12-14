@@ -1,38 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>打砖块 (8051) by pikipity</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="打砖块 (8051) : 使用 AT89C52 制作的一个打砖块游戏机" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>打砖块 (8051)</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>打砖块 (8051)</h1>
-        <p>使用 AT89C52 制作的一个打砖块游戏机</p>
-        <p class="view"><a href="https://github.com/pikipity/Breakout_clone">View the Project on GitHub <small>pikipity/Breakout_clone</small></a></p>
-        <ul>
-          <li><a href="https://github.com/pikipity/Breakout_clone/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/pikipity/Breakout_clone/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/pikipity/Breakout_clone">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h2>
-<a name="%E7%AE%80%E4%BB%8B" class="anchor" href="#%E7%AE%80%E4%BB%8B"><span class="octicon octicon-link"></span></a>简介</h2>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/pikipity/Breakout_clone">View on GitHub</a>
+
+          <h1 id="project_title">打砖块 (8051)</h1>
+          <h2 id="project_tagline">使用 AT89C52 制作的一个打砖块游戏机</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/pikipity/Breakout_clone/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/pikipity/Breakout_clone/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="octicon octicon-link"></span></a>项目简介</h1>
 
 <p>用 AT89C52 做的一个打砖块游戏机，使用 Proteus 进行的仿真，部分电路如果要实体化还需改进。</p>
 
 <p>使用 AMPIRE12864 作为显示器，三个按键分别控制平台的“左右移动”和“开始游戏”。为了保证游戏中音乐与画面的流畅，使用另外一块 AT89C52 来控制 sounder 进行声音的播放。</p>
+
+<p>现阶段 V2 已完成。</p>
+
+<h1>
+<a name="v2-%E6%94%B9%E8%BF%9B" class="anchor" href="#v2-%E6%94%B9%E8%BF%9B"><span class="octicon octicon-link"></span></a>V2 改进</h1>
+
+<ol>
+<li>更改了碰撞后消失砖块的大小。</li>
+<li>在两个单片机之间加了两条同步线来使画面和声音更加同步。</li>
+<li>
+<p>可以手动调整挡板移动方式，共两种移动方式：</p>
+
+<ul>
+<li>按键按下移动，不按不移动 (Not smooth)</li>
+<li>按键指定方向，挡板自动移动 (Smooth)</li>
+</ul>
+</li>
+</ol><h1>
+<a name="v1-%E7%AE%80%E4%BB%8B" class="anchor" href="#v1-%E7%AE%80%E4%BB%8B"><span class="octicon octicon-link"></span></a>V1 简介</h1>
 
 <h2>
 <a name="%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99" class="anchor" href="#%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99"><span class="octicon octicon-link"></span></a>游戏规则</h2>
@@ -114,11 +137,15 @@
 <p><img src="https://lh4.googleusercontent.com/-IM0DGKy4E1Y/UoeDaDz8iLI/AAAAAAAABXc/XecvfvZClZY/s530/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7%25202013-11-16%2520%25E4%25B8%258B%25E5%258D%258810.24.09.png" alt="一关获胜之后的画面"></p>
       </section>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/pikipity">pikipity</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">打砖块 (8051) maintained by <a href="https://github.com/pikipity">pikipity</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -129,6 +156,7 @@
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+
 
   </body>
 </html>
