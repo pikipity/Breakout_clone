@@ -18,6 +18,8 @@
    - 按键按下移动，不按不移动 (Not smooth)
    - 按键指定方向，挡板自动移动 (Smooth)
 
+[Proteus 仿真效果视频（优酷）](http://v.youku.com/v_show/id_XNjQ4MDI1ODk2.html)
+
 # V1 简介
 
 ## 游戏规则
